@@ -7,13 +7,8 @@ const paths = {
     pages: ['src/*.html']
 };
 
-function copyHtml() {
-    gulp.src(paths.pages)
-        .pipe(gulp.dest('dist'));
-}
 
 gulp.task('default', () => {
-    copyHtml();
     return browserify({
         basedir: '.',
         debug: true,
