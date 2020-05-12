@@ -3,13 +3,25 @@
 
 <head>
     <meta charset='utf-8'>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 
 <body>
-    <button id="grabCookie">Grab Cookie</button>
-    <a>Cookie Count: </a>
-    <a id="cookieCount"></a>
-    <script src='./bundle.js'></script>
+    <script src='./dist/bundle.js'></script>
+
+    <div id="div_in">
+        <div id="container1"><select id="ddl_type" aria-placeholder="<type>"></select></div>
+        <div id="container2"><input type="text" id="txt_scope"></div>
+        <input type="text" id="txt_subject">
+        <textarea id="txa_body"></textarea>
+        <textarea id="txa_footer"></textarea>
+        <div id="p_warning">warning</div>
+    </div>
+    <div id="div_out">
+        <div id="p_formatted">formatted
+            <div><button id="btn_copy">Copy to Clipboard</button>
+            </div>
+        </div>
 </body>
 
 </html>
