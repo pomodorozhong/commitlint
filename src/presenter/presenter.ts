@@ -20,8 +20,14 @@ export class Presenter implements IPresenter {
 
     }
 
-    toFormat(): void { 
-        console.log("2020/05/14 test");
+    toFormat(): void {
+        this.view.displayFormattedText(
+            this.formatter.format(
+                this.view.getType(),
+                this.view.getScope(),
+                this.view.getSubject(),
+                this.view.getBody(),
+                this.view.getFooter()));
     }
 
     toCheckRule(): void { }
