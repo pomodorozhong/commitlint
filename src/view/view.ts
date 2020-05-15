@@ -30,6 +30,29 @@ export class View implements IView {
         function userInputed() {
             self.presenter.toFormat();
         }
+
+        this.setPlaceholder();
+    }
+
+    setPlaceholder(): void {
+        let input: HTMLInputElement =
+            <HTMLInputElement>this.DOM.getElementById("ddl_type");
+        var opt = document.createElement('option');
+        opt.appendChild(document.createTextNode('<type>'));
+        input.appendChild(opt);
+        
+        input = <HTMLInputElement>this.DOM.getElementById("txt_scope");
+        input.placeholder="<scope>"
+
+        input = <HTMLInputElement>this.DOM.getElementById("txt_subject");
+        input.placeholder="<subject>"
+
+        input = <HTMLInputElement>this.DOM.getElementById("txa_body");
+        input.placeholder="<body>"
+
+        input = <HTMLInputElement>this.DOM.getElementById("txa_footer");
+        input.placeholder="<footer>"
+
     }
 
     // DOM Manipulation
