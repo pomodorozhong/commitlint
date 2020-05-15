@@ -24,11 +24,17 @@ export class View implements IView {
             .getElementById("txa_footer")
             .addEventListener("input", userInputed);
 
-        var self = this;
+        let self = this;
+        this.DOM
+            .getElementById("btn_copy")
+            .addEventListener("click", btnClicked);
 
         // Event Handler
         function userInputed() {
             self.presenter.toFormat();
+        }
+        function btnClicked() {
+            self.presenter.toFormatWithoutBr();
         }
 
         this.setPlaceholder();
