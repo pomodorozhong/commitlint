@@ -9,7 +9,19 @@ export class View implements IView {
         this.presenter = presenter;
         this.DOM = DOM;
         this.DOM
+            .getElementById("ddl_type")
+            .addEventListener("change", userInputed);
+        this.DOM
             .getElementById("txt_scope")
+            .addEventListener("input", userInputed);
+        this.DOM
+            .getElementById("txt_subject")
+            .addEventListener("input", userInputed);
+        this.DOM
+            .getElementById("txa_body")
+            .addEventListener("input", userInputed);
+        this.DOM
+            .getElementById("txa_footer")
             .addEventListener("input", userInputed);
 
         var self = this;
@@ -36,22 +48,22 @@ export class View implements IView {
             <HTMLInputElement>this.DOM.getElementById("ddl_type");
         return input.value;
     }
-    getScope(): string{
+    getScope(): string {
         let input: HTMLInputElement =
             <HTMLInputElement>this.DOM.getElementById("txt_scope");
         return input.value;
     }
-    getSubject(): string{
+    getSubject(): string {
         let input: HTMLInputElement =
             <HTMLInputElement>this.DOM.getElementById("txt_subject");
         return input.value;
     }
-    getBody(): string{
+    getBody(): string {
         let input: HTMLInputElement =
             <HTMLInputElement>this.DOM.getElementById("txa_body");
         return input.value;
     }
-    getFooter(): string{
+    getFooter(): string {
         let input: HTMLInputElement =
             <HTMLInputElement>this.DOM.getElementById("txa_footer");
         return input.value;
