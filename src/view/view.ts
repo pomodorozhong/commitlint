@@ -32,6 +32,68 @@ export class View implements IView {
         }
 
         this.setPlaceholder();
+        this.setTypes();
+    }
+
+    setTypes(): void {
+        let input: HTMLInputElement =
+            <HTMLInputElement>this.DOM.getElementById("ddl_type");
+
+        var opt = document.createElement('option');
+        opt.appendChild(document.createTextNode('feat✨'));
+        input.appendChild(opt);
+        
+        opt = document.createElement('option');
+        opt.appendChild(document.createTextNode('fix🐛'));
+        input.appendChild(opt);
+        
+        opt = document.createElement('option');
+        opt.appendChild(document.createTextNode('perf⚡️'));
+        input.appendChild(opt);
+        
+        opt = document.createElement('option');
+        opt.appendChild(document.createTextNode('test✅'));
+        input.appendChild(opt);
+        
+        opt = document.createElement('option');
+        opt.appendChild(document.createTextNode('docs📝'));
+        input.appendChild(opt);
+        
+        opt = document.createElement('option');
+        opt.appendChild(document.createTextNode('refactor♻️'));
+        input.appendChild(opt);
+        
+        opt = document.createElement('option');
+        opt.appendChild(document.createTextNode('style💄'));
+        input.appendChild(opt);
+        
+        opt = document.createElement('option');
+        opt.appendChild(document.createTextNode('revert🔙'));
+        input.appendChild(opt);
+        
+        opt = document.createElement('option');
+        opt.appendChild(document.createTextNode('build📦'));
+        input.appendChild(opt);
+        
+        opt = document.createElement('option');
+        opt.appendChild(document.createTextNode('config🔧'));
+        input.appendChild(opt);
+        
+        opt = document.createElement('option');
+        opt.appendChild(document.createTextNode('git🐙'));
+        input.appendChild(opt);
+        
+        opt = document.createElement('option');
+        opt.appendChild(document.createTextNode('chore⚙️'));
+        input.appendChild(opt);
+        
+        opt = document.createElement('option');
+        opt.appendChild(document.createTextNode('init🎉'));
+        input.appendChild(opt);
+        
+        opt = document.createElement('option');
+        opt.appendChild(document.createTextNode('publish🚀'));
+        input.appendChild(opt);        
     }
 
     setPlaceholder(): void {
@@ -40,18 +102,18 @@ export class View implements IView {
         var opt = document.createElement('option');
         opt.appendChild(document.createTextNode('<type>'));
         input.appendChild(opt);
-        
+
         input = <HTMLInputElement>this.DOM.getElementById("txt_scope");
-        input.placeholder="<scope>"
+        input.placeholder = "<scope>"
 
         input = <HTMLInputElement>this.DOM.getElementById("txt_subject");
-        input.placeholder="<subject>"
+        input.placeholder = "<subject>"
 
         input = <HTMLInputElement>this.DOM.getElementById("txa_body");
-        input.placeholder="<body>"
+        input.placeholder = "<body>"
 
         input = <HTMLInputElement>this.DOM.getElementById("txa_footer");
-        input.placeholder="<footer>"
+        input.placeholder = "<footer>"
 
     }
 
