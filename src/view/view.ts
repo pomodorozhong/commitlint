@@ -42,58 +42,58 @@ export class View implements IView {
         var opt = document.createElement('option');
         opt.appendChild(document.createTextNode('feat✨'));
         input.appendChild(opt);
-        
+
         opt = document.createElement('option');
         opt.appendChild(document.createTextNode('fix🐛'));
         input.appendChild(opt);
-        
+
         opt = document.createElement('option');
         opt.appendChild(document.createTextNode('perf⚡️'));
         input.appendChild(opt);
-        
+
         opt = document.createElement('option');
         opt.appendChild(document.createTextNode('test✅'));
         input.appendChild(opt);
-        
+
         opt = document.createElement('option');
         opt.appendChild(document.createTextNode('docs📝'));
         input.appendChild(opt);
-        
+
         opt = document.createElement('option');
         opt.appendChild(document.createTextNode('refactor♻️'));
         input.appendChild(opt);
-        
+
         opt = document.createElement('option');
         opt.appendChild(document.createTextNode('style💄'));
         input.appendChild(opt);
-        
+
         opt = document.createElement('option');
         opt.appendChild(document.createTextNode('revert🔙'));
         input.appendChild(opt);
-        
+
         opt = document.createElement('option');
         opt.appendChild(document.createTextNode('build📦'));
         input.appendChild(opt);
-        
+
         opt = document.createElement('option');
         opt.appendChild(document.createTextNode('config🔧'));
         input.appendChild(opt);
-        
+
         opt = document.createElement('option');
         opt.appendChild(document.createTextNode('git🐙'));
         input.appendChild(opt);
-        
+
         opt = document.createElement('option');
         opt.appendChild(document.createTextNode('chore⚙️'));
         input.appendChild(opt);
-        
+
         opt = document.createElement('option');
         opt.appendChild(document.createTextNode('init🎉'));
         input.appendChild(opt);
-        
+
         opt = document.createElement('option');
         opt.appendChild(document.createTextNode('publish🚀'));
-        input.appendChild(opt);        
+        input.appendChild(opt);
     }
 
     setPlaceholder(): void {
@@ -152,5 +152,41 @@ export class View implements IView {
         let input: HTMLInputElement =
             <HTMLInputElement>this.DOM.getElementById("txa_footer");
         return input.value;
+    }
+
+
+    fallbackCopyTextToClipboard(text) {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+
+        // Avoid scrolling to bottom
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Fallback: Copying text command was ' + msg);
+        } catch (err) {
+            console.error('Fallback: Oops, unable to copy', err);
+        }
+
+        document.body.removeChild(textArea);
+    }
+    copyTextToClipboard(text) {
+        if (!navigator.clipboard) {
+            this.fallbackCopyTextToClipboard(text);
+            return;
+        }
+        navigator.clipboard.writeText(text).then(function () {
+            console.log('Async: Copying to clipboard was successful!');
+        }, function (err) {
+            console.error('Async: Could not copy text: ', err);
+        });
     }
 }
