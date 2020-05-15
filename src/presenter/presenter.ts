@@ -30,5 +30,15 @@ export class Presenter implements IPresenter {
                 this.view.getFooter()));
     }
 
+    toFormatWithoutBr(): void {
+        this.view.copyTextToClipboard(
+            this.formatter.formatWithoutBr(
+                this.view.getType(),
+                this.view.getScope(),
+                this.view.getSubject(),
+                this.view.getBody(),
+                this.view.getFooter()));
+    }
+
     toCheckRule(): void { }
 }
