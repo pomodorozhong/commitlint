@@ -17,9 +17,9 @@ export class Formatter implements IFormatter {
         if (scope != "") {
             out += "(" + scope + ")";
         }
-        out += ": " + subject + "<br><br>";
-        out += body + "<br><br>";
-        out += footer;
+        out += ": " + subject;
+        out += body == "" ? "" : "<br><br>" + body;
+        out += footer == "" ? "" : "<br><br>" + footer;
 
         return out;
     }
