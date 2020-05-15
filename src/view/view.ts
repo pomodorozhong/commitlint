@@ -22,7 +22,7 @@ export class View implements IView {
 
     // DOM Manipulation
     displayFormattedText(text: string): void {
-        
+        this.DOM.getElementById("p_formatted").innerHTML = text;
     }
 
     displayWarning(text: string): void {
