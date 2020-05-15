@@ -1,4 +1,5 @@
 export interface IPresenter {
     initialize(): void;
-    toGrabCookie(): void;
+    toFormat(): void;
+    toCheckRule(): void;
 }
