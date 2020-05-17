@@ -18,8 +18,8 @@ export class Formatter implements IFormatter {
             out += "(" + scope + ")";
         }
         out += ": " + subject;
-        out += body == "" ? "" : "<br><br>" + body;
-        out += footer == "" ? "" : "<br><br>" + footer;
+        out += body == "" ? "" : "<br><br>" + body.split("\n").join("<br>");
+        out += footer == "" ? "" : "<br><br>" + footer.split("\n").join("<br>");
 
         return out;
     }
