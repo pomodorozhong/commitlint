@@ -106,6 +106,7 @@ export class View implements IView {
         let input: HTMLInputElement =
             <HTMLInputElement>this.DOM.getElementById("ddl_type");
         var opt = document.createElement('option');
+        opt.disabled = true;
         opt.appendChild(document.createTextNode('<type>'));
         input.appendChild(opt);
 
