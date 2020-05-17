@@ -6,6 +6,8 @@ This is a Template of MVP architecture implemented in TypeScript.
 
 `npm install`
 
+`npm install gulp -g`
+
 ## To Build
 
 `gulp`
