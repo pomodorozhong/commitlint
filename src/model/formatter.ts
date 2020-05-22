@@ -42,7 +42,7 @@ export class Formatter implements IFormatter {
         out += footer == "" ? "" : "\n\n" + footer;
 
         return out;
-    };
+    }
 
     IsTextLowerCaseCheck(
         text:string
