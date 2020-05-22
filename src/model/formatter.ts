@@ -42,18 +42,18 @@ export class Formatter implements IFormatter {
         out += footer == "" ? "" : "\n\n" + footer;
 
         return out;
-    };
+    }
 
     IsTextLowerCaseCheck(
         text:string
     ) : boolean {
         return ( text == text.toLowerCase() );
-    };
+    }
 
     IsTextLenLimitCheck(
         text:string,
         LimitLen:number
     ) : boolean {
         return ( text.length < LimitLen );
-    };
+    }
 }
