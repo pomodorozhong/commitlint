@@ -43,17 +43,4 @@ export class Formatter implements IFormatter {
 
         return out;
     }
-
-    IsTextLowerCaseCheck(
-        text:string
-    ) : boolean {
-        return ( text == text.toLowerCase() );
-    }
-
-    IsTextLenLimitCheck(
-        text:string,
-        LimitLen:number
-    ) : boolean {
-        return ( text.length < LimitLen );
-    }
 }
