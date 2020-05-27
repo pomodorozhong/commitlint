@@ -63,6 +63,7 @@ body {
 #txa_body:focus,
 #txa_footer:focus {
     /* outline: none; */
+    outline-color: #ebb86d;
 }
 
 #txa_body,
