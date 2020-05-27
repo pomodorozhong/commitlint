@@ -108,18 +108,6 @@ body {
     background-color: #FFFFFF;
 }
 
-#btn_copy {
-    margin-top: 1em;
-    margin-bottom: 0;
-    background-color: #208cff;
-    border-color: #208cff;
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    color: #FFFFFF;
-}
-
 #embedded_google_sheet {
     max-width: 600px;
     min-width: 400px;
