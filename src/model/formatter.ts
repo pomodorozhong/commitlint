@@ -11,11 +11,11 @@ export class Formatter implements IFormatter {
 
     let [type, scope, subject, body, footer] = stringArr;
 
-    // type = type.trim();
-    // scope = scope.trim();
-    // subject = subject.trim();
-    // body = body.trim();
-    // footer = footer.trim();
+    type = type.trim();
+    scope = scope.trim();
+    subject = subject.trim();
+    body = body.trim();
+    footer = footer.trim();
     out = [type, scope, subject, body, footer];
 
     return out;
