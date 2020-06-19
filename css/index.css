@@ -98,6 +98,8 @@ body {
     background-color: #ffefbb;
     border-color: #ffe9a0;
     color: #856404;
+    visibility: hidden;
+    position: absolute;
 }
 
 #p_formatted {
