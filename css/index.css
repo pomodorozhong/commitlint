@@ -6,7 +6,7 @@ body {
 * {
     line-height: 18px;
     font-size: 15px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 #div_in,
@@ -63,6 +63,7 @@ body {
 #txa_body:focus,
 #txa_footer:focus {
     /* outline: none; */
+    outline-color: #ebb86d;
 }
 
 #txa_body,
@@ -97,6 +98,8 @@ body {
     background-color: #ffefbb;
     border-color: #ffe9a0;
     color: #856404;
+    visibility: hidden;
+    position: absolute;
 }
 
 #p_formatted {
@@ -106,18 +109,6 @@ body {
 
 #div_container_for_formatted {
     background-color: #FFFFFF;
-}
-
-#btn_copy {
-    margin-top: 1em;
-    margin-bottom: 0;
-    background-color: #208cff;
-    border-color: #208cff;
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    color: #FFFFFF;
 }
 
 #embedded_google_sheet {
