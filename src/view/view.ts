@@ -26,6 +26,7 @@ export class View implements IView {
     // Event Handler
     function userInputed() {
       self.presenter.toFormat();
+      self.presenter.toCheckRule();
     }
     function btnClicked() {
       self.presenter.toFormatWithoutBr();
@@ -125,7 +126,26 @@ export class View implements IView {
     this.DOM.getElementById("p_formatted").innerHTML = text;
   }
 
-  displayWarning(text: string): void {}
+  displayWarning(text: string): void {
+    if (text === "") {
+      this.toggleWarningVisibility(true);
+    } else {
+      this.toggleWarningVisibility(false);
+      this.DOM.getElementById("p_warning").innerHTML = text;
+    }
+  }
+
+  toggleWarningVisibility(isHidden: boolean): void {
+    let element: HTMLElement = this.DOM.getElementById("p_warning");
+
+    if (isHidden) {
+      element.style.visibility = "hidden";
+      element.style.position = "absolute";
+    } else {
+      element.style.visibility = "visible";
+      element.style.position = "relative";
+    }
+  }
 
   // DOM Accessing
   getType(): string {
