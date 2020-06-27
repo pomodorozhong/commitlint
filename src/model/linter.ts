@@ -1,4 +1,6 @@
 import { ILinter } from "../interface/model/linter.interface";
+import { Formatter } from "./formatter";
+import { IFormatter } from "../interface/model/formatter.interface";
 
 export class Linter implements ILinter {
   constructor() {}
@@ -7,6 +9,15 @@ export class Linter implements ILinter {
   lint(stringArr: [string, string, string, string, string]) {
     let warning: string = "";
     let [type, scope, subject, body, footer] = stringArr;
+
+    let formatter: IFormatter = new Formatter();
+    [type, scope, subject, body, footer] = formatter.baseFormat([
+      type,
+      scope,
+      subject,
+      body,
+      footer,
+    ]);
 
     if (!this.IsTextLowerCaseCheck(subject)) {
       warning += "subject 行首字母不需要大寫。<br>";
