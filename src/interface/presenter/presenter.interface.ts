@@ -3,4 +3,5 @@ export interface IPresenter {
     toFormat(): void;
     toFormatWithoutBr(): void;
     toCheckRule(): void;
+    getTypes(): Array<string>;
 }

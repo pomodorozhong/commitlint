@@ -1,0 +1,18 @@
+{
+    "types": [
+        "feat✨",
+        "fix🐛",
+        "perf⚡️",
+        "test✅",
+        "docs📝",
+        "refactor♻️",
+        "style💄",
+        "revert🔙",
+        "build📦",
+        "config🔧",
+        "git🐙",
+        "chore⚙️",
+        "init🎉",
+        "publish🚀"
+    ]
+}
