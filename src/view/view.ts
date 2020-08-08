@@ -41,61 +41,13 @@ export class View implements IView {
       this.DOM.getElementById("ddl_type")
     );
 
-    var opt = document.createElement("option");
-    opt.appendChild(document.createTextNode("feat✨"));
-    input.appendChild(opt);
+    const types = this.presenter.getTypes();
 
-    opt = document.createElement("option");
-    opt.appendChild(document.createTextNode("fix🐛"));
-    input.appendChild(opt);
-
-    opt = document.createElement("option");
-    opt.appendChild(document.createTextNode("perf⚡️"));
-    input.appendChild(opt);
-
-    opt = document.createElement("option");
-    opt.appendChild(document.createTextNode("test✅"));
-    input.appendChild(opt);
-
-    opt = document.createElement("option");
-    opt.appendChild(document.createTextNode("docs📝"));
-    input.appendChild(opt);
-
-    opt = document.createElement("option");
-    opt.appendChild(document.createTextNode("refactor♻️"));
-    input.appendChild(opt);
-
-    opt = document.createElement("option");
-    opt.appendChild(document.createTextNode("style💄"));
-    input.appendChild(opt);
-
-    opt = document.createElement("option");
-    opt.appendChild(document.createTextNode("revert🔙"));
-    input.appendChild(opt);
-
-    opt = document.createElement("option");
-    opt.appendChild(document.createTextNode("build📦"));
-    input.appendChild(opt);
-
-    opt = document.createElement("option");
-    opt.appendChild(document.createTextNode("config🔧"));
-    input.appendChild(opt);
-
-    opt = document.createElement("option");
-    opt.appendChild(document.createTextNode("git🐙"));
-    input.appendChild(opt);
-
-    opt = document.createElement("option");
-    opt.appendChild(document.createTextNode("chore⚙️"));
-    input.appendChild(opt);
-
-    opt = document.createElement("option");
-    opt.appendChild(document.createTextNode("init🎉"));
-    input.appendChild(opt);
-
-    opt = document.createElement("option");
-    opt.appendChild(document.createTextNode("publish🚀"));
-    input.appendChild(opt);
+    types.forEach((t) => {
+      var opt = document.createElement("option");
+      opt.appendChild(document.createTextNode(t));
+      input.appendChild(opt);
+    });
   }
 
   setPlaceholder(): void {
