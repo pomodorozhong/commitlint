@@ -5,6 +5,7 @@ import { IFormatter } from "../interface/model/formatter.interface";
 import { Formatter } from "../model/formatter";
 import { ILinter } from "../interface/model/linter.interface";
 import { Linter } from "../model/linter";
+import { getTypesFromConfig } from "../model/getTypesFromConfig";
 
 export class Presenter implements IPresenter {
   private view: IView;
@@ -56,5 +57,9 @@ export class Presenter implements IPresenter {
         this.view.getFooter(),
       ])
     );
+  }
+
+  getTypes(): Array<string> {
+    return getTypesFromConfig();
   }
 }
