@@ -2,12 +2,22 @@
 
 This is a online commit message linting tool tailored for our team, inspired by [chiflix/commitlintio](https://github.com/chiflix/commitlintio).
 
-## To Install Development Dependencies
+## Installation
 
-`npm install gulp -g`
+```sh
+npm install
+```
 
-`npm install`
+## Build
 
-## To Build
+To watch the chage of source code and automatically rebuild:
 
-`gulp`
+```sh
+npm run dev
+```
+
+To build for once:
+
+```sh
+npm run build
+```
