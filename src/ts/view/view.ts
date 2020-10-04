@@ -21,6 +21,7 @@ export class View implements IView {
         function userInputed() {
             self.presenter.toFormat();
             self.presenter.toCheckRule();
+            self.autoSetClearButtonVisibility();
         }
         function btnClicked() {
             self.presenter.toFormatWithoutBr();
@@ -65,53 +66,63 @@ export class View implements IView {
     }
 
     setClearButton(userInputed: Function): void {
-        let ids: Array<string> = ["txt_scope", "txt_subject", "txa_body", "txa_footer"];
+        let targetIds: Array<string> = ["txt_scope", "txt_subject", "txa_body", "txa_footer"];
+        let ids: Array<string> = [
+            "btn_clearScope",
+            "btn_clearSubject",
+            "btn_clearBody",
+            "btn_clearFooter",
+        ];
         let containers: Array<string> = ["container2", "container3", "container4", "container5"];
         let clears: Array<EventListener> = [clearScope, clearSubject, clearBody, clearFooter];
 
         let btn = document.createElement("input");
         btn.type = "button";
-        btn.id = "btn_clear";
         btn.value = "x";
+        btn.style.visibility = "hidden";
 
         let self = this;
 
-        let btnClone1 = btn.cloneNode(true);
+        let btnClone1 = <HTMLInputElement>btn.cloneNode(true);
+        btnClone1.id = ids[0];
         btnClone1.addEventListener("click", clears[0]);
         let container1 = this.DOM.getElementById(containers[0]);
         container1?.appendChild(btnClone1);
         function clearScope() {
-            let element: HTMLTextAreaElement = self.DOM.getElementById(ids[0]);
+            let element: HTMLTextAreaElement = self.DOM.getElementById(targetIds[0]);
             element.value = "";
             userInputed();
         }
 
-        let btnClone2 = btn.cloneNode(true);
+        let btnClone2 = <HTMLInputElement>btn.cloneNode(true);
+        btnClone2.id = ids[1];
         btnClone2.addEventListener("click", clears[1]);
         let container2 = this.DOM.getElementById(containers[1]);
         container2?.appendChild(btnClone2);
         function clearSubject() {
-            let element: HTMLTextAreaElement = self.DOM.getElementById(ids[1]);
+            let element: HTMLTextAreaElement = self.DOM.getElementById(targetIds[1]);
             element.value = "";
             userInputed();
         }
 
-        let btnClone3 = btn.cloneNode(true);
+        let btnClone3 = <HTMLInputElement>btn.cloneNode(true);
+        btnClone3.id = ids[2];
         btnClone3.addEventListener("click", clears[2]);
         let container3 = this.DOM.getElementById(containers[2]);
         container3?.appendChild(btnClone3);
         function clearBody() {
-            let element: HTMLTextAreaElement = self.DOM.getElementById(ids[2]);
+            let element: HTMLTextAreaElement = self.DOM.getElementById(targetIds[2]);
             element.value = "";
             userInputed();
         }
 
-        let btnClone4 = btn.cloneNode(true);
+        let btnClone4 = <HTMLInputElement>btn.cloneNode(true);
+        btnClone4.id = ids[3];
         btnClone4.addEventListener("click", clears[3]);
         let container4 = this.DOM.getElementById(containers[3]);
         container4?.appendChild(btnClone4);
         function clearFooter() {
-            let element: HTMLTextAreaElement = self.DOM.getElementById(ids[3]);
+            let element: HTMLTextAreaElement = self.DOM.getElementById(targetIds[3]);
             element.value = "";
             userInputed();
         }
@@ -140,6 +151,22 @@ export class View implements IView {
         } else {
             element.style.visibility = "visible";
             element.style.position = "relative";
+        }
+    }
+
+    autoSetClearButtonVisibility(): void {
+        let targetIds: Array<string> = ["txt_scope", "txt_subject", "txa_body", "txa_footer"];
+        let buttonIds: Array<string> = [
+            "btn_clearScope",
+            "btn_clearSubject",
+            "btn_clearBody",
+            "btn_clearFooter",
+        ];
+
+        for (let i = 0; i < targetIds.length; i++) {
+            const value = (<HTMLTextAreaElement>this.DOM.getElementById(targetIds[i])).value;
+            let element = <HTMLTextAreaElement>this.DOM.getElementById(buttonIds[i]);
+            element.style.visibility = value.length > 0 ? "visible" : "hidden";
         }
     }
 

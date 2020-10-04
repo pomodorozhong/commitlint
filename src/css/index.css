@@ -92,7 +92,10 @@ body {
     max-width: 66.666667%;
 }
 
-#btn_clear {
+#btn_clearScope,
+#btn_clearSubject,
+#btn_clearBody,
+#btn_clearFooter {
     position: absolute;
     margin-left: -22px;
     background-color: #ffffff00;
