@@ -54,7 +54,10 @@ body {
 #txa_footer,
 #p_warning,
 #p_formatted,
-#div_container_for_formatted {
+#div_container_for_formatted,
+#container3 ,
+#container4 ,
+#container5 {
     width: 100%;
 }
 
@@ -89,6 +92,18 @@ body {
     max-width: 66.666667%;
 }
 
+#btn_clearScope,
+#btn_clearSubject,
+#btn_clearBody,
+#btn_clearFooter {
+    position: absolute;
+    margin-left: -22px;
+    background-color: #ffffff00;
+    border-width: 0;
+    box-sizing: border-box;
+    width: 22px;
+}
+
 #ddl_type {
     width: 90%;
 }
@@ -109,7 +124,7 @@ body {
 }
 
 #div_container_for_formatted {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 }
 
 #embedded_google_sheet {
