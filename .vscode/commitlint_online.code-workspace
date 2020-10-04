@@ -5,8 +5,8 @@
     }
   ],
   "settings": {
-    "prettier.tabWidth": 2,
-    "editor.tabSize": 2,
-    "editor.formatOnSave": true
+    "editor.tabSize": 4,
+    "prettier.tabWidth": 4,
+    "prettier.printWidth": 100
   }
 }
