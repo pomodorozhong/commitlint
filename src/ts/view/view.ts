@@ -77,9 +77,16 @@ export class View implements IView {
         let containers: Array<string> = ["container2", "container3", "container4", "container5"];
         let clears: Array<EventListener> = [clearScope, clearSubject, clearBody, clearFooter];
 
-        let btn = document.createElement("input");
-        btn.type = "button";
-        btn.value = "x";
+        var xmlns = "http://www.w3.org/2000/svg";
+        let btn = document.createElement("button");
+        let svg = document.createElementNS(xmlns, "svg");
+        svg.setAttribute("viewBox", "0 0 40 40");
+        let path = document.createElementNS(xmlns, "path");
+        path.setAttribute("class", "close-x");
+        let coords = `M 7,7 L 33,33 M 33,7 L 7,33`;
+        path.setAttributeNS(null, "d", coords);
+        svg.appendChild(path);
+        btn.appendChild(svg);
         btn.style.visibility = "hidden";
 
         let self = this;
