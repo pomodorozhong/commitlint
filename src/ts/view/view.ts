@@ -30,6 +30,7 @@ export class View implements IView {
         this.setPlaceholder();
         this.setTypes();
         this.setClearButton(userInputed);
+        this.setupAutoExpandedTextarea();
     }
 
     setTypes(): void {
@@ -91,7 +92,10 @@ export class View implements IView {
         function clearScope() {
             let element: HTMLTextAreaElement = self.DOM.getElementById(targetIds[0]);
             element.value = "";
-            userInputed();
+
+            var event = document.createEvent("Event");
+            event.initEvent("input", true, true);
+            element.dispatchEvent(event);
         }
 
         let btnClone2 = <HTMLInputElement>btn.cloneNode(true);
@@ -102,7 +106,10 @@ export class View implements IView {
         function clearSubject() {
             let element: HTMLTextAreaElement = self.DOM.getElementById(targetIds[1]);
             element.value = "";
-            userInputed();
+
+            var event = document.createEvent("Event");
+            event.initEvent("input", true, true);
+            element.dispatchEvent(event);
         }
 
         let btnClone3 = <HTMLInputElement>btn.cloneNode(true);
@@ -113,7 +120,10 @@ export class View implements IView {
         function clearBody() {
             let element: HTMLTextAreaElement = self.DOM.getElementById(targetIds[2]);
             element.value = "";
-            userInputed();
+
+            var event = document.createEvent("Event");
+            event.initEvent("input", true, true);
+            element.dispatchEvent(event);
         }
 
         let btnClone4 = <HTMLInputElement>btn.cloneNode(true);
@@ -124,7 +134,42 @@ export class View implements IView {
         function clearFooter() {
             let element: HTMLTextAreaElement = self.DOM.getElementById(targetIds[3]);
             element.value = "";
-            userInputed();
+
+            var event = document.createEvent("Event");
+            event.initEvent("input", true, true);
+            element.dispatchEvent(event);
+        }
+    }
+
+    setupAutoExpandedTextarea(): void {
+        let textarea;
+
+        textarea = document.getElementById("txa_body");
+        textarea?.addEventListener("input", autoExpandedTextarea);
+
+        textarea = document.getElementById("txa_footer");
+        textarea?.addEventListener("input", autoExpandedTextarea);
+
+        function autoExpandedTextarea(event: Event) {
+            let textarea = <HTMLElement>event.target;
+
+            // Reset field height
+            textarea.style.height = "inherit";
+
+            // Get the computed styles for the element
+            let computed = window.getComputedStyle(textarea);
+
+            // Calculate the height
+            let heightCorrection = -10;
+            let height =
+                parseInt(computed.getPropertyValue("border-top-width"), 10) +
+                parseInt(computed.getPropertyValue("padding-top"), 10) +
+                textarea.scrollHeight +
+                parseInt(computed.getPropertyValue("padding-bottom"), 10) +
+                parseInt(computed.getPropertyValue("border-bottom-width"), 10) +
+                heightCorrection;
+
+            textarea.style.height = height + "px";
         }
     }
 
