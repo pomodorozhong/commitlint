@@ -92,7 +92,10 @@ export class View implements IView {
         function clearScope() {
             let element: HTMLTextAreaElement = self.DOM.getElementById(targetIds[0]);
             element.value = "";
-            userInputed();
+
+            var event = document.createEvent("Event");
+            event.initEvent("input", true, true);
+            element.dispatchEvent(event);
         }
 
         let btnClone2 = <HTMLInputElement>btn.cloneNode(true);
@@ -103,7 +106,10 @@ export class View implements IView {
         function clearSubject() {
             let element: HTMLTextAreaElement = self.DOM.getElementById(targetIds[1]);
             element.value = "";
-            userInputed();
+
+            var event = document.createEvent("Event");
+            event.initEvent("input", true, true);
+            element.dispatchEvent(event);
         }
 
         let btnClone3 = <HTMLInputElement>btn.cloneNode(true);
@@ -114,7 +120,10 @@ export class View implements IView {
         function clearBody() {
             let element: HTMLTextAreaElement = self.DOM.getElementById(targetIds[2]);
             element.value = "";
-            userInputed();
+
+            var event = document.createEvent("Event");
+            event.initEvent("input", true, true);
+            element.dispatchEvent(event);
         }
 
         let btnClone4 = <HTMLInputElement>btn.cloneNode(true);
@@ -125,7 +134,10 @@ export class View implements IView {
         function clearFooter() {
             let element: HTMLTextAreaElement = self.DOM.getElementById(targetIds[3]);
             element.value = "";
-            userInputed();
+
+            var event = document.createEvent("Event");
+            event.initEvent("input", true, true);
+            element.dispatchEvent(event);
         }
     }
 
