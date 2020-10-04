@@ -28,6 +28,7 @@ export class View implements IView {
 
         this.setPlaceholder();
         this.setTypes();
+        this.setClearButton(userInputed);
     }
 
     setTypes(): void {
@@ -61,6 +62,59 @@ export class View implements IView {
 
         input = <HTMLInputElement>this.DOM.getElementById("txa_footer");
         input.placeholder = "<footer>";
+    }
+
+    setClearButton(userInputed: Function): void {
+        let ids: Array<string> = ["txt_scope", "txt_subject", "txa_body", "txa_footer"];
+        let containers: Array<string> = ["container2", "container3", "container4", "container5"];
+        let clears: Array<EventListener> = [clearScope, clearSubject, clearBody, clearFooter];
+
+        let btn = document.createElement("input");
+        btn.type = "button";
+        btn.id = "btn_clear";
+        btn.value = "x";
+
+        let self = this;
+
+        let btnClone1 = btn.cloneNode(true);
+        btnClone1.addEventListener("click", clears[0]);
+        let container1 = this.DOM.getElementById(containers[0]);
+        container1?.appendChild(btnClone1);
+        function clearScope() {
+            let element: HTMLTextAreaElement = self.DOM.getElementById(ids[0]);
+            element.value = "";
+            userInputed();
+        }
+
+        let btnClone2 = btn.cloneNode(true);
+        btnClone2.addEventListener("click", clears[1]);
+        let container2 = this.DOM.getElementById(containers[1]);
+        container2?.appendChild(btnClone2);
+        function clearSubject() {
+            let element: HTMLTextAreaElement = self.DOM.getElementById(ids[1]);
+            element.value = "";
+            userInputed();
+        }
+
+        let btnClone3 = btn.cloneNode(true);
+        btnClone3.addEventListener("click", clears[2]);
+        let container3 = this.DOM.getElementById(containers[2]);
+        container3?.appendChild(btnClone3);
+        function clearBody() {
+            let element: HTMLTextAreaElement = self.DOM.getElementById(ids[2]);
+            element.value = "";
+            userInputed();
+        }
+
+        let btnClone4 = btn.cloneNode(true);
+        btnClone4.addEventListener("click", clears[3]);
+        let container4 = this.DOM.getElementById(containers[3]);
+        container4?.appendChild(btnClone4);
+        function clearFooter() {
+            let element: HTMLTextAreaElement = self.DOM.getElementById(ids[3]);
+            element.value = "";
+            userInputed();
+        }
     }
 
     // DOM Manipulation
