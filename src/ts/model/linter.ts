@@ -34,8 +34,14 @@ export class Linter implements ILinter {
         return warning;
     }
 
-    IsTextLowerCaseCheck(text: string): boolean {
-        return text[0] == text[0].toLowerCase();
+    IsTextLowerCaseCheck(text: string | undefined): boolean {
+        let isValid = false;
+        if (text == undefined || text.length == 0) {
+            isValid = true;
+        } else {
+            isValid = text[0] == text[0].toLowerCase();
+        }
+        return isValid;
     }
 
     IsTextLenLimitCheck(text: string, LimitLen: number): boolean {
