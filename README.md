@@ -1,4 +1,4 @@
-# Conventional Commit Tool
+# Commitlint
 
 This is a online commit message linting tool tailored for our team, inspired by [chiflix/commitlintio](https://github.com/chiflix/commitlintio).
 
