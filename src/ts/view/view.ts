@@ -30,6 +30,7 @@ export class View implements IView {
         this.setPlaceholder();
         this.setTypes();
         this.setClearButton(userInputed);
+        this.setupAutoExpandedTextarea();
     }
 
     setTypes(): void {
@@ -125,6 +126,38 @@ export class View implements IView {
             let element: HTMLTextAreaElement = self.DOM.getElementById(targetIds[3]);
             element.value = "";
             userInputed();
+        }
+    }
+
+    setupAutoExpandedTextarea(): void {
+        let textarea;
+
+        textarea = document.getElementById("txa_body");
+        textarea?.addEventListener("input", autoExpandedTextarea);
+
+        textarea = document.getElementById("txa_footer");
+        textarea?.addEventListener("input", autoExpandedTextarea);
+
+        function autoExpandedTextarea(event: Event) {
+            let textarea = <HTMLElement>event.target;
+
+            // Reset field height
+            textarea.style.height = "inherit";
+
+            // Get the computed styles for the element
+            let computed = window.getComputedStyle(textarea);
+
+            // Calculate the height
+            let heightCorrection = -10;
+            let height =
+                parseInt(computed.getPropertyValue("border-top-width"), 10) +
+                parseInt(computed.getPropertyValue("padding-top"), 10) +
+                textarea.scrollHeight +
+                parseInt(computed.getPropertyValue("padding-bottom"), 10) +
+                parseInt(computed.getPropertyValue("border-bottom-width"), 10) +
+                heightCorrection;
+
+            textarea.style.height = height + "px";
         }
     }
 
