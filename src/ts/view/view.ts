@@ -198,10 +198,10 @@ export class View implements IView {
         let element: HTMLElement = this.DOM.getElementById("p_warning");
 
         if (isHidden) {
-            element.style.visibility = "hidden";
+            element.style.display = "none";
             element.style.position = "absolute";
         } else {
-            element.style.visibility = "visible";
+            element.style.display = "block";
             element.style.position = "relative";
         }
     }
