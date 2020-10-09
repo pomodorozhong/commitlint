@@ -1,0 +1,37 @@
+#btn_clearScope,
+#btn_clearSubject,
+#btn_clearBody,
+#btn_clearFooter {
+    position: absolute;
+    margin-top: 4.5px;
+    margin-left: -26.5px;
+    background-color: #ffffff;
+    border-width: 0;
+    box-sizing: border-box;
+    width: 22px;
+    height: 22px;
+    outline-style: none;
+}
+
+#btn_clearScope:hover,
+#btn_clearSubject:hover,
+#btn_clearBody:hover,
+#btn_clearFooter:hover {
+    margin-top: 5.5px;
+    margin-left: -26px;
+}
+
+#btn_clearScope:active,
+#btn_clearSubject:active,
+#btn_clearBody:active,
+#btn_clearFooter:active {
+    margin-top: 6px;
+    margin-left: -25.5px;
+}
+
+.close-x {
+    stroke: #151513;
+    fill: transparent;
+    stroke-linecap: round;
+    stroke-width: 3px;
+}

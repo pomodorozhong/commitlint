@@ -2,12 +2,14 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
             href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
             rel="stylesheet"
         />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" type="text/css" href="css/btn_copy.css" />
+        <link rel="stylesheet" type="text/css" href="css/btn_clear.css" />
         <link
             rel="icon"
             href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐙</text></svg>"
@@ -16,25 +18,28 @@
     </head>
 
     <body>
-        <div id="div_in">
-            <div id="container1"><select id="ddl_type"></select></div>
-            <div id="container2"><input type="text" id="txt_scope" /></div>
-            <div id="container3"><input type="text" id="txt_subject" /></div>
-            <div id="container4"><textarea id="txa_body"></textarea></div>
-            <div id="container5"><textarea id="txa_footer"></textarea></div>
-            <div id="p_warning">warning</div>
-        </div>
-        <div id="div_out">
-            <div id="div_container_for_formatted">
-                <div id="p_formatted"></div>
-                <div><button id="btn_copy">Copy to Clipboard</button></div>
+        <div id="frame">
+            <div id="div_in">
+                <div id="container1"><select id="ddl_type"></select></div>
+                <div id="container2"><input type="text" id="txt_scope" /></div>
+                <div id="container3">
+                    <input type="text" id="txt_subject" />
+                </div>
+                <div id="container4"><textarea id="txa_body"></textarea></div>
+                <div id="container5"><textarea id="txa_footer"></textarea></div>
+                <div id="p_warning">warning</div>
             </div>
+            <div id="div_out">
+                <div id="div_container_for_formatted">
+                    <div id="p_formatted"></div>
+                    <div><button id="btn_copy">Copy to Clipboard</button></div>
+                </div>
+            </div>
+            <iframe
+                id="embedded_google_sheet"
+                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0BTVhY3frDJiM2lP-J6ObVVfJyPa8PzYF0Q0YXb_WqFzAeKAaYsdYHZxSl9vlOmvQ0EFZynnGC_-_/pubhtml?widget=false&amp;headers=false"
+            ></iframe>
         </div>
-        <iframe
-            id="embedded_google_sheet"
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0BTVhY3frDJiM2lP-J6ObVVfJyPa8PzYF0Q0YXb_WqFzAeKAaYsdYHZxSl9vlOmvQ0EFZynnGC_-_/pubhtml?widget=false&amp;headers=false"
-        ></iframe>
-
         <script src="./ts/github_corner.ts"></script>
         <script src="./ts/main.ts"></script>
     </body>
