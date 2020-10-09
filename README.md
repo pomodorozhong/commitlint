@@ -2,9 +2,13 @@
 
 This is a online commit message linting tool tailored for our team, inspired by [chiflix/commitlintio](https://github.com/chiflix/commitlintio).
 
+[Click here](https://pomodorozhong.github.io/commitlint/) to see the tool.
+
 ## Installation
 
 ```sh
+git clone https://github.com/pomodorozhong/commitlint
+cd commitlint
 npm install
 ```
 
