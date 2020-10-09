@@ -5,12 +5,11 @@
     position: absolute;
     margin-top: 4.5px;
     margin-left: -26.5px;
-    background-color: #ddd;
+    background-color: #ffffff;
     border-width: 0;
     box-sizing: border-box;
     width: 22px;
     height: 22px;
-    border-radius: 50%;
     outline-style: none;
 }
 
@@ -31,8 +30,8 @@
 }
 
 .close-x {
-    stroke: black;
+    stroke: #151513;
     fill: transparent;
     stroke-linecap: round;
-    stroke-width: 5;
+    stroke-width: 3px;
 }

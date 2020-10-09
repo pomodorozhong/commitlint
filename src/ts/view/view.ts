@@ -83,7 +83,7 @@ export class View implements IView {
         svg.setAttribute("viewBox", "0 0 40 40");
         let path = document.createElementNS(xmlns, "path");
         path.setAttribute("class", "close-x");
-        let coords = `M 7,7 L 33,33 M 33,7 L 7,33`;
+        let coords = `M 10,10 L 30,30 M 30,10 L 10,30`;
         path.setAttributeNS(null, "d", coords);
         svg.appendChild(path);
         btn.appendChild(svg);
