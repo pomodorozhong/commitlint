@@ -56,7 +56,6 @@ body {
     display: flex;
 }
 
-#div_container_for_formatted,
 #p_warning,
 #container1,
 #container2,
@@ -147,6 +146,10 @@ body {
     padding-right: 0.75rem;
     /* padding: 1.375rem 0.75rem; */
     box-sizing: border-box;
+}
+
+#div_out{
+    padding-left: 20px;
 }
 
 #container1 {
