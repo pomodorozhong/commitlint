@@ -21,7 +21,6 @@ body {
 
     width: 100%;
     max-width: 600px;
-    min-width: 300px;
 
     display: flex;
     flex-wrap: wrap;
@@ -57,7 +56,6 @@ body {
     display: flex;
 }
 
-#div_container_for_formatted,
 #p_warning,
 #container1,
 #container2,
@@ -68,6 +66,7 @@ body {
 }
 
 #embedded_google_sheet {
+    background-color: #ffffff;
     border-radius: 4px;
     height: 510px;
 }
@@ -136,6 +135,7 @@ body {
 #txa_body,
 #txa_footer {
     resize: vertical;
+    margin-bottom: 7px;
 }
 
 #div_container_for_formatted,
@@ -148,17 +148,19 @@ body {
     box-sizing: border-box;
 }
 
+#div_out{
+    padding-left: 20px;
+}
+
 #container1 {
     flex-grow: 1;
 }
 
 #container2 {
     flex-grow: 3;
-    min-width: 180px;
 }
 
 #ddl_type {
-    min-width: 110px;
 }
 
 #p_warning {
