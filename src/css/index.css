@@ -21,7 +21,6 @@ body {
 
     width: 100%;
     max-width: 600px;
-    min-width: 300px;
 
     display: flex;
     flex-wrap: wrap;
@@ -137,6 +136,7 @@ body {
 #txa_body,
 #txa_footer {
     resize: vertical;
+    margin-bottom: 7px;
 }
 
 #div_container_for_formatted,
@@ -155,11 +155,9 @@ body {
 
 #container2 {
     flex-grow: 3;
-    min-width: 180px;
 }
 
 #ddl_type {
-    min-width: 110px;
 }
 
 #p_warning {
