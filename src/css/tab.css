@@ -1,0 +1,19 @@
+label {
+    display: inline-block;
+    width: 100px;
+    height: 24px;
+
+    margin-right: 10px;
+    margin-bottom: 7px;
+    border-bottom: 5px solid rgb(155, 150, 150);
+    font-size: 1.1em;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + label {
+    border-bottom: 5px solid rgb(96, 139, 123);
+}
+

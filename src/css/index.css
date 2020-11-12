@@ -204,3 +204,7 @@ body {
 #div_container_for_formatted {
     background-color: #ffffff;
 }
+
+#lbl_for_rad_editor {
+    margin-left: 5px;
+}
