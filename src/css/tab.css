@@ -5,15 +5,17 @@ label {
 
     margin-right: 15px;
     margin-bottom: 7px;
-    border-bottom: 5px solid rgb(170, 170, 170);
+    border-bottom: 5px solid #979797;
     font-size: 1.1em;
-    color: #5d5d5d;
+    color: #777777;
 }
 
 label:hover{
     width: 110px;
     margin-right:5px;
-    transition: all 0.1s
+    transition: all 0.1s;
+    color: #c7c7c7;
+    border-color: #c7c7c7;
 }
 
 input[type="radio"] {
@@ -22,6 +24,6 @@ input[type="radio"] {
 
 input[type="radio"]:checked + label {
     color: black;
-    border-bottom: 5px solid rgb(96, 139, 123);
+    border-color: rgb(96, 139, 123);
 }
 
