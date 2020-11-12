@@ -3,10 +3,17 @@ label {
     width: 100px;
     height: 24px;
 
-    margin-right: 10px;
+    margin-right: 15px;
     margin-bottom: 7px;
     border-bottom: 5px solid rgb(155, 150, 150);
     font-size: 1.1em;
+    color: #5d5d5d;
+}
+
+label:hover{
+    width: 110px;
+    margin-right:5px;
+    transition: all 0.1s
 }
 
 input[type="radio"] {
@@ -14,6 +21,7 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked + label {
+    color: black;
     border-bottom: 5px solid rgb(96, 139, 123);
 }
 
