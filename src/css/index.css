@@ -107,7 +107,7 @@ body {
 #txa_body,
 #txa_footer,
 #p_warning,
-#p_formatted,
+.formatted,
 #div_container_for_formatted,
 #btn_copy {
     margin-bottom: 10px;
@@ -129,7 +129,7 @@ body {
 #txa_body,
 #txa_footer,
 #p_warning,
-#p_formatted,
+.formatted,
 #div_container_for_formatted {
     padding-right: 1.75rem;
 }
@@ -146,7 +146,7 @@ body {
 #txa_body,
 #txa_footer,
 #p_warning,
-#p_formatted,
+.formatted,
 #div_container_for_formatted,
 #container3,
 #container4,
@@ -197,7 +197,7 @@ body {
     /* position: absolute; */
 }
 
-#p_formatted {
+.formatted {
     border: 0px solid #e5e5e5;
     word-wrap: break-word;
 }
