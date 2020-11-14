@@ -59,6 +59,18 @@ export class Presenter implements IPresenter {
         );
     }
 
+    addCurrentMessageAsOneHistoryEntry(): void {
+        this.view.addHistoryEntry(
+            this.formatter.format(
+                this.view.getType(),
+                this.view.getScope(),
+                this.view.getSubject(),
+                this.view.getBody(),
+                this.view.getFooter()
+            )
+        );
+    }
+
     getTypes(): Array<string> {
         return getTypesFromConfig();
     }

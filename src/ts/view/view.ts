@@ -43,6 +43,7 @@ export class View implements IView {
         }
         function btnClicked() {
             self.presenter.toFormatWithoutBr();
+            self.presenter.addCurrentMessageAsOneHistoryEntry();
         }
 
         this.setPlaceholder();
@@ -274,6 +275,22 @@ export class View implements IView {
             );
             element.style.visibility = value.length > 0 ? "visible" : "hidden";
         }
+    }
+
+    addHistoryEntry(formatted_text: string): void {
+        let entry: HTMLDivElement = document.createElement("div");
+        entry.innerHTML = formatted_text;
+        entry.className = "formatted";
+        entry.addEventListener("click", EntryClicked);
+        let self = this;
+        function EntryClicked(e: Event) {
+            self.copyTextToClipboard((e.target as HTMLDivElement).innerHTML);
+        }
+
+        let container: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("tab_history")
+        );
+        container.insertBefore(entry, container.firstChild);
     }
 
     // DOM Accessing

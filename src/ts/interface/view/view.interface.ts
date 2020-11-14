@@ -9,4 +9,6 @@ export interface IView {
     getSubject(): string;
     getBody(): string;
     getFooter(): string;
+
+    addHistoryEntry(formatted_text: string): void;
 }
