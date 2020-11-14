@@ -27,3 +27,12 @@ input[type="radio"]:checked + label {
     border-color: rgb(96, 139, 123);
 }
 
+
+#rad_history:checked ~ #tab_history,
+#rad_information:checked ~ #tab_information{
+  display:block
+}
+
+#tab_history,#tab_information{
+    display:none;
+}
