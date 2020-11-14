@@ -280,7 +280,7 @@ export class View implements IView {
     addHistoryEntry(formatted_text: string): void {
         let entry: HTMLDivElement = document.createElement("div");
         entry.innerHTML = formatted_text;
-        entry.className = "formatted";
+        entry.className = "formatted entry";
         entry.addEventListener("click", EntryClicked);
         let self = this;
         function EntryClicked(e: Event) {

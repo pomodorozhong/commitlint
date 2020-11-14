@@ -209,3 +209,38 @@ body {
 #lbl_for_rad_editor {
     margin-left: 5px;
 }
+
+.entry:focus {
+    outline: 0;
+}
+
+.entry {
+    cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.entry:hover {
+    box-shadow: 0px 1px 5px 1px #5699d8;
+}
+
+.entry:after {
+    content: "";
+    background: #b4dcf3;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.entry:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
