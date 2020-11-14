@@ -8,14 +8,32 @@ export class View implements IView {
     constructor(DOM: Document, presenter: Presenter) {
         this.presenter = presenter;
         this.DOM = DOM;
-        this.DOM.getElementById("ddl_type").addEventListener("change", userInputed);
-        this.DOM.getElementById("txt_scope").addEventListener("input", userInputed);
-        this.DOM.getElementById("txt_subject").addEventListener("input", userInputed);
-        this.DOM.getElementById("txa_body").addEventListener("input", userInputed);
-        this.DOM.getElementById("txa_footer").addEventListener("input", userInputed);
+        this.DOM.getElementById("ddl_type").addEventListener(
+            "change",
+            userInputed
+        );
+        this.DOM.getElementById("txt_scope").addEventListener(
+            "input",
+            userInputed
+        );
+        this.DOM.getElementById("txt_subject").addEventListener(
+            "input",
+            userInputed
+        );
+        this.DOM.getElementById("txa_body").addEventListener(
+            "input",
+            userInputed
+        );
+        this.DOM.getElementById("txa_footer").addEventListener(
+            "input",
+            userInputed
+        );
 
         let self = this;
-        this.DOM.getElementById("btn_copy").addEventListener("click", btnClicked);
+        this.DOM.getElementById("btn_copy").addEventListener(
+            "click",
+            btnClicked
+        );
 
         // Event Handler
         function userInputed() {
@@ -34,7 +52,9 @@ export class View implements IView {
     }
 
     setTypes(): void {
-        let input: HTMLInputElement = <HTMLInputElement>this.DOM.getElementById("ddl_type");
+        let input: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("ddl_type")
+        );
 
         const types = this.presenter.getTypes();
 
@@ -46,7 +66,9 @@ export class View implements IView {
     }
 
     setPlaceholder(): void {
-        let input: HTMLInputElement = <HTMLInputElement>this.DOM.getElementById("ddl_type");
+        let input: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("ddl_type")
+        );
         var opt = document.createElement("option");
         opt.disabled = true;
         opt.selected = true;
@@ -67,15 +89,30 @@ export class View implements IView {
     }
 
     setClearButton(userInputed: Function): void {
-        let targetIds: Array<string> = ["txt_scope", "txt_subject", "txa_body", "txa_footer"];
+        let targetIds: Array<string> = [
+            "txt_scope",
+            "txt_subject",
+            "txa_body",
+            "txa_footer",
+        ];
         let ids: Array<string> = [
             "btn_clearScope",
             "btn_clearSubject",
             "btn_clearBody",
             "btn_clearFooter",
         ];
-        let containers: Array<string> = ["container2", "container3", "container4", "container5"];
-        let clears: Array<EventListener> = [clearScope, clearSubject, clearBody, clearFooter];
+        let containers: Array<string> = [
+            "container2",
+            "container3",
+            "container4",
+            "container5",
+        ];
+        let clears: Array<EventListener> = [
+            clearScope,
+            clearSubject,
+            clearBody,
+            clearFooter,
+        ];
 
         var xmlns = "http://www.w3.org/2000/svg";
         let btn = document.createElement("button");
@@ -97,7 +134,9 @@ export class View implements IView {
         let container1 = this.DOM.getElementById(containers[0]);
         container1?.appendChild(btnClone1);
         function clearScope() {
-            let element: HTMLTextAreaElement = self.DOM.getElementById(targetIds[0]);
+            let element: HTMLTextAreaElement = self.DOM.getElementById(
+                targetIds[0]
+            );
             element.value = "";
 
             var event = document.createEvent("Event");
@@ -111,7 +150,9 @@ export class View implements IView {
         let container2 = this.DOM.getElementById(containers[1]);
         container2?.appendChild(btnClone2);
         function clearSubject() {
-            let element: HTMLTextAreaElement = self.DOM.getElementById(targetIds[1]);
+            let element: HTMLTextAreaElement = self.DOM.getElementById(
+                targetIds[1]
+            );
             element.value = "";
 
             var event = document.createEvent("Event");
@@ -125,7 +166,9 @@ export class View implements IView {
         let container3 = this.DOM.getElementById(containers[2]);
         container3?.appendChild(btnClone3);
         function clearBody() {
-            let element: HTMLTextAreaElement = self.DOM.getElementById(targetIds[2]);
+            let element: HTMLTextAreaElement = self.DOM.getElementById(
+                targetIds[2]
+            );
             element.value = "";
 
             var event = document.createEvent("Event");
@@ -139,7 +182,9 @@ export class View implements IView {
         let container4 = this.DOM.getElementById(containers[3]);
         container4?.appendChild(btnClone4);
         function clearFooter() {
-            let element: HTMLTextAreaElement = self.DOM.getElementById(targetIds[3]);
+            let element: HTMLTextAreaElement = self.DOM.getElementById(
+                targetIds[3]
+            );
             element.value = "";
 
             var event = document.createEvent("Event");
@@ -207,7 +252,12 @@ export class View implements IView {
     }
 
     autoSetClearButtonVisibility(): void {
-        let targetIds: Array<string> = ["txt_scope", "txt_subject", "txa_body", "txa_footer"];
+        let targetIds: Array<string> = [
+            "txt_scope",
+            "txt_subject",
+            "txa_body",
+            "txa_footer",
+        ];
         let buttonIds: Array<string> = [
             "btn_clearScope",
             "btn_clearSubject",
@@ -216,31 +266,45 @@ export class View implements IView {
         ];
 
         for (let i = 0; i < targetIds.length; i++) {
-            const value = (<HTMLTextAreaElement>this.DOM.getElementById(targetIds[i])).value;
-            let element = <HTMLTextAreaElement>this.DOM.getElementById(buttonIds[i]);
+            const value = (<HTMLTextAreaElement>(
+                this.DOM.getElementById(targetIds[i])
+            )).value;
+            let element = <HTMLTextAreaElement>(
+                this.DOM.getElementById(buttonIds[i])
+            );
             element.style.visibility = value.length > 0 ? "visible" : "hidden";
         }
     }
 
     // DOM Accessing
     getType(): string {
-        let input: HTMLInputElement = <HTMLInputElement>this.DOM.getElementById("ddl_type");
+        let input: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("ddl_type")
+        );
         return input.value;
     }
     getScope(): string {
-        let input: HTMLInputElement = <HTMLInputElement>this.DOM.getElementById("txt_scope");
+        let input: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("txt_scope")
+        );
         return input.value;
     }
     getSubject(): string {
-        let input: HTMLInputElement = <HTMLInputElement>this.DOM.getElementById("txt_subject");
+        let input: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("txt_subject")
+        );
         return input.value;
     }
     getBody(): string {
-        let input: HTMLInputElement = <HTMLInputElement>this.DOM.getElementById("txa_body");
+        let input: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("txa_body")
+        );
         return input.value;
     }
     getFooter(): string {
-        let input: HTMLInputElement = <HTMLInputElement>this.DOM.getElementById("txa_footer");
+        let input: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("txa_footer")
+        );
         return input.value;
     }
 
