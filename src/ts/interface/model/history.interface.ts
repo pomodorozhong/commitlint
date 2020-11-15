@@ -4,4 +4,6 @@ export interface IHistory {
     addEntry(stringArr: [string, string, string, string, string]): number;
 
     getEntry(index: number): [string, string, string, string, string];
+
+    getAllEntry(): Array<[string, string, string, string, string]>;
 }

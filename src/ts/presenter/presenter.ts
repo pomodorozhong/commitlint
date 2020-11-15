@@ -25,7 +25,23 @@ export class Presenter implements IPresenter {
     }
 
     // Sync View and Model
-    initialize(): void {}
+    initialize(): void {
+        // Setup history entries
+        const history_entry = this.history.getAllEntry();
+        for (let i = 0; i < history_entry.length; i++) {
+            let entry = history_entry[i];
+            this.view.addHistoryEntry(
+                i,
+                this.formatter.format(
+                    entry[0],
+                    entry[1],
+                    entry[2],
+                    entry[3],
+                    entry[4],
+                )
+            );
+        }
+    }
 
     toFormat(): void {
         this.view.displayFormattedText(
