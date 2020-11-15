@@ -1,6 +1,6 @@
 export interface IView {
     copyTextToClipboard(text: string): void;
-    
+
     displayFormattedText(text: string): void;
     displayWarning(text: string): void;
 
@@ -10,5 +10,5 @@ export interface IView {
     getBody(): string;
     getFooter(): string;
 
-    addHistoryEntry(formatted_text: string): void;
+    addHistoryEntry(index: number, formatted_text: string): void;
 }

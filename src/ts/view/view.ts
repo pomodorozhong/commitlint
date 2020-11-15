@@ -277,14 +277,16 @@ export class View implements IView {
         }
     }
 
-    addHistoryEntry(formatted_text: string): void {
+    addHistoryEntry(index: number, formatted_text: string): void {
         let entry: HTMLDivElement = document.createElement("div");
         entry.innerHTML = formatted_text;
         entry.className = "formatted entry";
         entry.addEventListener("click", EntryClicked);
         let self = this;
         function EntryClicked(e: Event) {
-            self.copyTextToClipboard((e.target as HTMLDivElement).innerHTML);
+            self.copyTextToClipboard(
+                self.presenter.toGetFormattedHistoryEntry(index)
+            );
         }
 
         let container: HTMLInputElement = <HTMLInputElement>(
