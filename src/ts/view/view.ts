@@ -290,6 +290,7 @@ export class View implements IView {
         let container_for_btn_and_text: HTMLDivElement = document.createElement(
             "div"
         );
+        container_for_btn_and_text.style.position="relative";
         container_for_btn_and_text.appendChild(btn);
         container_for_btn_and_text.appendChild(entry);
 
