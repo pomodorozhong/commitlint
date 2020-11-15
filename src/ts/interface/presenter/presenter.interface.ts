@@ -5,5 +5,6 @@ export interface IPresenter {
     toCheckRule(): void;
     getTypes(): Array<string>;
     addCurrentMessageAsOneHistoryEntry(): void;
+    deleteOneHistoryEntry(index: number): void;
     toGetFormattedHistoryEntry(index: number): string;
 }

@@ -11,4 +11,5 @@ export interface IView {
     getFooter(): string;
 
     addHistoryEntry(index: number, formatted_text: string): void;
+    clearAllHistoryEntry(): void;
 }

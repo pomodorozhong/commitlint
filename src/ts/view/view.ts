@@ -267,21 +267,44 @@ export class View implements IView {
     }
 
     addHistoryEntry(index: number, formatted_text: string): void {
+        let self = this;
+
+        let isHidden: boolean = false;
+        let btn = this.createClearButtonBase(isHidden);
+        btn.id = "btn_history_entry_clear";
+        btn.addEventListener("click", clearEntry);
+        function clearEntry() {
+            self.presenter.deleteOneHistoryEntry(index);
+        }
+
         let entry: HTMLDivElement = document.createElement("div");
         entry.innerHTML = formatted_text;
         entry.className = "formatted entry";
         entry.addEventListener("click", EntryClicked);
-        let self = this;
         function EntryClicked(e: Event) {
             self.copyTextToClipboard(
                 self.presenter.toGetFormattedHistoryEntry(index)
             );
         }
 
+        let container_for_btn_and_text: HTMLDivElement = document.createElement(
+            "div"
+        );
+        container_for_btn_and_text.appendChild(btn);
+        container_for_btn_and_text.appendChild(entry);
+
         let container: HTMLInputElement = <HTMLInputElement>(
             this.DOM.getElementById("tab_history")
         );
-        container.insertBefore(entry, container.firstChild);
+        container.insertBefore(
+            container_for_btn_and_text,
+            container.firstChild
+        );
+    }
+
+    clearAllHistoryEntry(): void {
+        let element = <HTMLDivElement>this.DOM.getElementById("tab_history");
+        element.textContent = "";
     }
 
     // DOM Accessing
