@@ -87,6 +87,10 @@ export class Presenter implements IPresenter {
             this.view.getBody(),
             this.view.getFooter(),
         ]);
+        if (index == -1) {
+            return;
+        }
+
         this.view.addHistoryEntry(
             index,
             this.formatter.format(
