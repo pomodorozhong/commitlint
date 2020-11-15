@@ -115,25 +115,14 @@ export class View implements IView {
             clearFooter,
         ];
 
-        var xmlns = "http://www.w3.org/2000/svg";
-        let btn = document.createElement("button");
-        let svg = document.createElementNS(xmlns, "svg");
-        svg.setAttribute("viewBox", "0 0 40 40");
-        let path = document.createElementNS(xmlns, "path");
-        path.setAttribute("class", "close-x");
-        let coords = `M 10,10 L 30,30 M 30,10 L 10,30`;
-        path.setAttributeNS(null, "d", coords);
-        svg.appendChild(path);
-        btn.appendChild(svg);
-        btn.style.visibility = "hidden";
-
         let self = this;
 
-        let btnClone1 = <HTMLInputElement>btn.cloneNode(true);
-        btnClone1.id = ids[0];
-        btnClone1.addEventListener("click", clears[0]);
+        let is_hidden: boolean = true;
+        let btn1 = this.createClearButtonBase(is_hidden);
+        btn1.id = ids[0];
+        btn1.addEventListener("click", clears[0]);
         let container1 = this.DOM.getElementById(containers[0]);
-        container1?.appendChild(btnClone1);
+        container1?.appendChild(btn1);
         function clearScope() {
             let element: HTMLTextAreaElement = self.DOM.getElementById(
                 targetIds[0]
@@ -145,11 +134,11 @@ export class View implements IView {
             element.dispatchEvent(event);
         }
 
-        let btnClone2 = <HTMLInputElement>btn.cloneNode(true);
-        btnClone2.id = ids[1];
-        btnClone2.addEventListener("click", clears[1]);
+        let btn2 = this.createClearButtonBase(is_hidden);
+        btn2.id = ids[1];
+        btn2.addEventListener("click", clears[1]);
         let container2 = this.DOM.getElementById(containers[1]);
-        container2?.appendChild(btnClone2);
+        container2?.appendChild(btn2);
         function clearSubject() {
             let element: HTMLTextAreaElement = self.DOM.getElementById(
                 targetIds[1]
@@ -161,11 +150,11 @@ export class View implements IView {
             element.dispatchEvent(event);
         }
 
-        let btnClone3 = <HTMLInputElement>btn.cloneNode(true);
-        btnClone3.id = ids[2];
-        btnClone3.addEventListener("click", clears[2]);
+        let btn3 = this.createClearButtonBase(is_hidden);
+        btn3.id = ids[2];
+        btn3.addEventListener("click", clears[2]);
         let container3 = this.DOM.getElementById(containers[2]);
-        container3?.appendChild(btnClone3);
+        container3?.appendChild(btn3);
         function clearBody() {
             let element: HTMLTextAreaElement = self.DOM.getElementById(
                 targetIds[2]
@@ -177,11 +166,11 @@ export class View implements IView {
             element.dispatchEvent(event);
         }
 
-        let btnClone4 = <HTMLInputElement>btn.cloneNode(true);
-        btnClone4.id = ids[3];
-        btnClone4.addEventListener("click", clears[3]);
+        let btn4 = this.createClearButtonBase(is_hidden);
+        btn4.id = ids[3];
+        btn4.addEventListener("click", clears[3]);
         let container4 = this.DOM.getElementById(containers[3]);
-        container4?.appendChild(btnClone4);
+        container4?.appendChild(btn4);
         function clearFooter() {
             let element: HTMLTextAreaElement = self.DOM.getElementById(
                 targetIds[3]
@@ -363,5 +352,23 @@ export class View implements IView {
                 console.error("Async: Could not copy text: ", err);
             }
         );
+    }
+
+    createClearButtonBase(isHidden: boolean) {
+        var xmlns = "http://www.w3.org/2000/svg";
+        let btn = document.createElement("button");
+        let svg = document.createElementNS(xmlns, "svg");
+        svg.setAttribute("viewBox", "0 0 40 40");
+        let path = document.createElementNS(xmlns, "path");
+        path.setAttribute("class", "close-x");
+        let coords = `M 10,10 L 30,30 M 30,10 L 10,30`;
+        path.setAttributeNS(null, "d", coords);
+        svg.appendChild(path);
+        btn.appendChild(svg);
+        if (isHidden) {
+            btn.style.visibility = "hidden";
+        }
+
+        return btn;
     }
 }
