@@ -59,6 +59,18 @@ export class History implements IHistory {
         return this.history_entries[index];
     }
 
+    deleteEntry(index: number): void {
+        if (index > this.history_entries.length - 1) {
+            return;
+        } else {
+            for (let i = index; i < this.history_entries.length - 1; i++) {
+                this.history_entries[i] = this.history_entries[i + 1];
+            }
+            this.history_entries.pop();
+            setCookie(this.cookie_name, JSON.stringify(this.history_entries));
+        }
+    }
+
     getAllEntry(): [
         type: string,
         scope: string,

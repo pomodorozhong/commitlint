@@ -5,5 +5,7 @@ export interface IHistory {
 
     getEntry(index: number): [string, string, string, string, string];
 
+    deleteEntry(index: number): void;
+
     getAllEntry(): Array<[string, string, string, string, string]>;
 }
