@@ -35,3 +35,23 @@
     stroke-linecap: round;
     stroke-width: 3px;
 }
+
+#btn_history_entry_clear {
+    position: absolute;
+    z-index: 1;
+
+    margin-top: 4px;
+    right: 7px;
+    background-color: #ffffff;
+    border-width: 0;
+    box-sizing: border-box;
+    width: 22px;
+    height: 22px;
+    outline-style: none;
+}
+#btn_history_entry_clear:hover {
+    width: 24px;
+    height: 24px;
+    margin-top: 3px;
+    right: 6px;
+}

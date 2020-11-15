@@ -3,7 +3,13 @@ import { getCookie, setCookie, eraseCookie } from "./cookie";
 
 export class History implements IHistory {
     cookie_name: string = "commitlint_history";
-    history_entries: Array<[string, string, string, string, string]>;
+    history_entries: [
+        type: string,
+        scope: string,
+        subject: string,
+        body: string,
+        footer: string
+    ][];
     constructor() {
         try {
             let cookie = getCookie(this.cookie_name);
@@ -19,7 +25,16 @@ export class History implements IHistory {
             console.log("Cookie reseted.");
         }
     }
-    addEntry(entry: [string, string, string, string, string]): number {
+
+    addEntry(
+        entry: [
+            type: string,
+            scope: string,
+            subject: string,
+            body: string,
+            footer: string
+        ]
+    ): number {
         if (this.checkDuplicate(entry)) {
             let index = -1;
             return index;
@@ -32,17 +47,48 @@ export class History implements IHistory {
         return index;
     }
 
-    // stringArr =[type, scope, subject, body, footer]
-    getEntry(index: number): [string, string, string, string, string] {
+    getEntry(
+        index: number
+    ): [
+        type: string,
+        scope: string,
+        subject: string,
+        body: string,
+        footer: string
+    ] {
         return this.history_entries[index];
     }
 
-    getAllEntry(): Array<[string, string, string, string, string]> {
+    deleteEntry(index: number): void {
+        if (index > this.history_entries.length - 1) {
+            return;
+        } else {
+            for (let i = index; i < this.history_entries.length - 1; i++) {
+                this.history_entries[i] = this.history_entries[i + 1];
+            }
+            this.history_entries.pop();
+            setCookie(this.cookie_name, JSON.stringify(this.history_entries));
+        }
+    }
+
+    getAllEntry(): [
+        type: string,
+        scope: string,
+        subject: string,
+        body: string,
+        footer: string
+    ][] {
         return this.history_entries;
     }
 
     checkDuplicate(
-        new_entry: [string, string, string, string, string]
+        new_entry: [
+            type: string,
+            scope: string,
+            subject: string,
+            body: string,
+            footer: string
+        ]
     ): boolean {
         let isDuplicate = false;
 

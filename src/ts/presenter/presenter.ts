@@ -37,7 +37,7 @@ export class Presenter implements IPresenter {
                     entry[1],
                     entry[2],
                     entry[3],
-                    entry[4],
+                    entry[4]
                 )
             );
         }
@@ -101,6 +101,12 @@ export class Presenter implements IPresenter {
                 this.view.getFooter()
             )
         );
+    }
+
+    deleteOneHistoryEntry(index: number): void {
+        this.history.deleteEntry(index);
+        this.view.clearAllHistoryEntry();
+        this.initialize();
     }
 
     toGetFormattedHistoryEntry(index: number): string {
