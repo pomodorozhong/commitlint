@@ -20,6 +20,11 @@ export class History implements IHistory {
         }
     }
     addEntry(entry: [string, string, string, string, string]): number {
+        if (this.checkDuplicate(entry)) {
+            let index = -1;
+            return index;
+        }
+
         let index = this.history_entries.length;
         this.history_entries.push(entry);
         setCookie(this.cookie_name, JSON.stringify(this.history_entries));
@@ -34,5 +39,25 @@ export class History implements IHistory {
 
     getAllEntry(): Array<[string, string, string, string, string]> {
         return this.history_entries;
+    }
+
+    checkDuplicate(
+        new_entry: [string, string, string, string, string]
+    ): boolean {
+        let isDuplicate = false;
+
+        this.history_entries.forEach((entry) => {
+            if (
+                entry[0] == new_entry[0] &&
+                entry[1] == new_entry[1] &&
+                entry[2] == new_entry[2] &&
+                entry[3] == new_entry[3] &&
+                entry[4] == new_entry[4]
+            ) {
+                isDuplicate = true;
+            }
+        });
+
+        return isDuplicate;
     }
 }
