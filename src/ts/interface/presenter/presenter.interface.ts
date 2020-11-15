@@ -4,4 +4,6 @@ export interface IPresenter {
     toFormatWithoutBr(): void;
     toCheckRule(): void;
     getTypes(): Array<string>;
+    addCurrentMessageAsOneHistoryEntry(): void;
+    toGetFormattedHistoryEntry(index: number): string;
 }

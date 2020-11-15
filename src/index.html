@@ -21,7 +21,7 @@
     <body>
         <div id="top_container">
             <div id="col1">
-                <input type="radio" id="rad_editor" name="tab_1" checked>
+                <input type="radio" id="rad_editor" name="tab_1" checked />
                 <label for="rad_editor" id="lbl_for_rad_editor">Editor</label>
                 <div id="frame">
                     <div id="div_in">
@@ -44,7 +44,7 @@
                     </div>
                     <div id="div_out">
                         <div id="div_container_for_formatted">
-                            <div id="p_formatted"></div>
+                            <div id="p_formatted" class="formatted"></div>
                             <div>
                                 <button id="btn_copy">Copy to Clipboard</button>
                             </div>
@@ -53,12 +53,17 @@
                 </div>
             </div>
             <div id="col2">
-                <input type="radio" id="rad_information" name="tab_2" checked>
+                <input type="radio" id="rad_history" name="tab_2" checked />
+                <label for="rad_history">History</label>
+                <input type="radio" id="rad_information" name="tab_2" />
                 <label for="rad_information">Information</label>
-                <iframe
-                    id="embedded_google_sheet"
-                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0BTVhY3frDJiM2lP-J6ObVVfJyPa8PzYF0Q0YXb_WqFzAeKAaYsdYHZxSl9vlOmvQ0EFZynnGC_-_/pubhtml?widget=false&amp;headers=false"
-                ></iframe>
+                <div id="tab_history"></div>
+                <div id="tab_information">
+                    <iframe
+                        id="embedded_google_sheet"
+                        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0BTVhY3frDJiM2lP-J6ObVVfJyPa8PzYF0Q0YXb_WqFzAeKAaYsdYHZxSl9vlOmvQ0EFZynnGC_-_/pubhtml?widget=false&amp;headers=false"
+                    ></iframe>
+                </div>
             </div>
         </div>
         <script src="./ts/github_corner.ts"></script>
