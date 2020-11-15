@@ -15,13 +15,18 @@ export class History implements IHistory {
             let cookie = getCookie(this.cookie_name);
             if (cookie === undefined) {
                 this.history_entries = [];
+                this.setPlaceholder();
                 console.log('There is no cookie of "commitlint_history". :(');
             } else {
                 this.history_entries = JSON.parse(cookie);
+                if (this.history_entries.length == 0) {
+                    this.setPlaceholder();
+                }
             }
         } catch (error) {
             eraseCookie(this.cookie_name);
             this.history_entries = [];
+            this.setPlaceholder();
             console.log("Cookie reseted.");
         }
     }
@@ -105,5 +110,16 @@ export class History implements IHistory {
         });
 
         return isDuplicate;
+    }
+
+    setPlaceholder() {
+        this.history_entries.push([
+            "",
+            "",
+            ")<br /><br />Here will be displaying history of commit messages, once you click the copy button in the editor.\
+<br /><br />This function is implemented by using cookie to save the messages.",
+            "",
+            "",
+        ]);
     }
 }
