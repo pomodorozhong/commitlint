@@ -27,6 +27,7 @@ body {
 #col2 {
     flex: 1 0 45%;
     min-width: 240px;
+    max-width: 550px;
 
     margin-bottom: 10px;
     margin-left: 5px;
@@ -39,23 +40,29 @@ body {
 }
 
 #col1 {
-    max-width: 550px;
     padding-left: 8px;
     padding-right: 8px;
 }
 
 #col2 {
-    max-width: 600px;
     padding-left: 13px;
     padding-right: 13px;
     padding-bottom: 8px;
+}
+
+@media (min-width: 500px) {
+    #col1 {
+        flex-basis: 44%;
+    }
+    #col2 {
+        min-width: 450px;
+    }
 }
 
 #frame {
     margin: auto;
 
     width: 100%;
-    max-width: 600px;
 
     display: flex;
     flex-wrap: wrap;
@@ -235,12 +242,12 @@ body {
     margin-left: -20px !important;
     margin-top: -120%;
     opacity: 0;
-    transition: all 0.8s
+    transition: all 0.8s;
 }
 
 .entry:active:after {
     padding: 0;
     margin: 0;
     opacity: 1;
-    transition: 0s
+    transition: 0s;
 }
