@@ -270,11 +270,17 @@ export class View implements IView {
         let self = this;
 
         let isHidden: boolean = false;
-        let btn = this.createClearButtonBase(isHidden);
-        btn.id = "btn_history_entry_clear";
-        btn.addEventListener("click", clearEntry);
+        let btn_clear = this.createClearButtonBase(isHidden);
+        btn_clear.id = "btn_history_entry_clear";
+        btn_clear.addEventListener("click", clearEntry);
         function clearEntry() {
             self.presenter.deleteOneHistoryEntry(index);
+        }
+        let btn_edit = this.createEditButton();
+        btn_edit.id = "btn_history_entry_edit";
+        btn_edit.addEventListener("click", editEntry);
+        function editEntry() {
+            self.presenter.editHistoryEntry(index);
         }
 
         let entry: HTMLDivElement = document.createElement("div");
@@ -290,8 +296,9 @@ export class View implements IView {
         let container_for_btn_and_text: HTMLDivElement = document.createElement(
             "div"
         );
-        container_for_btn_and_text.style.position="relative";
-        container_for_btn_and_text.appendChild(btn);
+        container_for_btn_and_text.style.position = "relative";
+        container_for_btn_and_text.appendChild(btn_clear);
+        container_for_btn_and_text.appendChild(btn_edit);
         container_for_btn_and_text.appendChild(entry);
 
         let container: HTMLInputElement = <HTMLInputElement>(
