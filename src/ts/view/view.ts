@@ -270,11 +270,17 @@ export class View implements IView {
         let self = this;
 
         let isHidden: boolean = false;
-        let btn = this.createClearButtonBase(isHidden);
-        btn.id = "btn_history_entry_clear";
-        btn.addEventListener("click", clearEntry);
+        let btn_clear = this.createClearButtonBase(isHidden);
+        btn_clear.id = "btn_history_entry_clear";
+        btn_clear.addEventListener("click", clearEntry);
         function clearEntry() {
             self.presenter.deleteOneHistoryEntry(index);
+        }
+        let btn_edit = this.createEditButton();
+        btn_edit.id = "btn_history_entry_edit";
+        btn_edit.addEventListener("click", editEntry);
+        function editEntry() {
+            self.presenter.editHistoryEntry(index);
         }
 
         let entry: HTMLDivElement = document.createElement("div");
@@ -290,8 +296,9 @@ export class View implements IView {
         let container_for_btn_and_text: HTMLDivElement = document.createElement(
             "div"
         );
-        container_for_btn_and_text.style.position="relative";
-        container_for_btn_and_text.appendChild(btn);
+        container_for_btn_and_text.style.position = "relative";
+        container_for_btn_and_text.appendChild(btn_clear);
+        container_for_btn_and_text.appendChild(btn_edit);
         container_for_btn_and_text.appendChild(entry);
 
         let container: HTMLInputElement = <HTMLInputElement>(
@@ -338,6 +345,52 @@ export class View implements IView {
             this.DOM.getElementById("txa_footer")
         );
         return input.value;
+    }
+
+    setType(text: string): void {
+        let input: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("ddl_type")
+        );
+        input.value = text;
+        this.presenter.toFormat();
+        this.presenter.toCheckRule();
+        this.autoSetClearButtonVisibility();
+    }
+    setScope(text: string): void {
+        let input: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("txt_scope")
+        );
+        input.value = text;
+        this.presenter.toFormat();
+        this.presenter.toCheckRule();
+        this.autoSetClearButtonVisibility();
+    }
+    setSubject(text: string): void {
+        let input: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("txt_subject")
+        );
+        input.value = text;
+        this.presenter.toFormat();
+        this.presenter.toCheckRule();
+        this.autoSetClearButtonVisibility();
+    }
+    setBody(text: string): void {
+        let input: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("txa_body")
+        );
+        input.value = text;
+        this.presenter.toFormat();
+        this.presenter.toCheckRule();
+        this.autoSetClearButtonVisibility();
+    }
+    setFooter(text: string): void {
+        let input: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("txa_footer")
+        );
+        input.value = text;
+        this.presenter.toFormat();
+        this.presenter.toCheckRule();
+        this.autoSetClearButtonVisibility();
     }
 
     fallbackCopyTextToClipboard(text) {
@@ -392,6 +445,22 @@ export class View implements IView {
         if (isHidden) {
             btn.style.visibility = "hidden";
         }
+
+        return btn;
+    }
+
+    createEditButton(): HTMLButtonElement {
+        var xmlns = "http://www.w3.org/2000/svg";
+        let btn = document.createElement("button");
+        let svg = document.createElementNS(xmlns, "svg");
+        svg.setAttribute("viewBox", "2 1 8 8");
+        let path = document.createElementNS(xmlns, "path");
+        path.setAttribute("class", "svg_pen");
+        let coords =
+            "M10 10M6 3L3 6L3 7L4 7L7 4L6 3M6.25 2.75L7.25 3.75L7.5 3.5L6.5 2.5L6.25 2.75";
+        path.setAttributeNS(null, "d", coords);
+        svg.appendChild(path);
+        btn.appendChild(svg);
 
         return btn;
     }

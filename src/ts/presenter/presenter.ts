@@ -109,6 +109,21 @@ export class Presenter implements IPresenter {
         this.initialize();
     }
 
+    editHistoryEntry(index: number): void {
+        let entry: [
+            string,
+            string,
+            string,
+            string,
+            string
+        ] = this.history.getEntry(index);
+        this.view.setType(entry[0]);
+        this.view.setScope(entry[1]);
+        this.view.setSubject(entry[2]);
+        this.view.setBody(entry[3]);
+        this.view.setFooter(entry[4]);
+    }
+
     toGetFormattedHistoryEntry(index: number): string {
         let entry = this.history.getEntry(index);
         return this.formatter.formatWithoutBr(

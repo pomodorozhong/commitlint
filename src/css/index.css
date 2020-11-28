@@ -222,6 +222,7 @@ body {
 }
 
 .entry {
+    padding-right: 50px;
     cursor: pointer;
     border: none;
     position: relative;
