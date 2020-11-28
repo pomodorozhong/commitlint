@@ -395,4 +395,20 @@ export class View implements IView {
 
         return btn;
     }
+
+    createEditButton(): HTMLButtonElement {
+        var xmlns = "http://www.w3.org/2000/svg";
+        let btn = document.createElement("button");
+        let svg = document.createElementNS(xmlns, "svg");
+        svg.setAttribute("viewBox", "2 1 8 8");
+        let path = document.createElementNS(xmlns, "path");
+        path.setAttribute("class", "svg_pen");
+        let coords =
+            "M10 10M6 3L3 6L3 7L4 7L7 4L6 3M6.25 2.75L7.25 3.75L7.5 3.5L6.5 2.5L6.25 2.75";
+        path.setAttributeNS(null, "d", coords);
+        svg.appendChild(path);
+        btn.appendChild(svg);
+
+        return btn;
+    }
 }
