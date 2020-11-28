@@ -340,6 +340,52 @@ export class View implements IView {
         return input.value;
     }
 
+    setType(text: string): void {
+        let input: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("ddl_type")
+        );
+        input.value = text;
+        this.presenter.toFormat();
+        this.presenter.toCheckRule();
+        this.autoSetClearButtonVisibility();
+    }
+    setScope(text: string): void {
+        let input: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("txt_scope")
+        );
+        input.value = text;
+        this.presenter.toFormat();
+        this.presenter.toCheckRule();
+        this.autoSetClearButtonVisibility();
+    }
+    setSubject(text: string): void {
+        let input: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("txt_subject")
+        );
+        input.value = text;
+        this.presenter.toFormat();
+        this.presenter.toCheckRule();
+        this.autoSetClearButtonVisibility();
+    }
+    setBody(text: string): void {
+        let input: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("txa_body")
+        );
+        input.value = text;
+        this.presenter.toFormat();
+        this.presenter.toCheckRule();
+        this.autoSetClearButtonVisibility();
+    }
+    setFooter(text: string): void {
+        let input: HTMLInputElement = <HTMLInputElement>(
+            this.DOM.getElementById("txa_footer")
+        );
+        input.value = text;
+        this.presenter.toFormat();
+        this.presenter.toCheckRule();
+        this.autoSetClearButtonVisibility();
+    }
+
     fallbackCopyTextToClipboard(text) {
         var textArea = document.createElement("textarea");
         textArea.value = text;
