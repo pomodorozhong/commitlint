@@ -21,6 +21,9 @@ export class History implements IHistory {
                 this.history_entries = JSON.parse(cookie);
                 if (this.history_entries.length == 0) {
                     this.setPlaceholder();
+                } else {
+                    this.renewCookie();
+                    console.log("Cookie renewed.");
                 }
             }
         } catch (error) {
@@ -84,6 +87,10 @@ export class History implements IHistory {
         footer: string
     ][] {
         return this.history_entries;
+    }
+
+    renewCookie(): void {
+        setCookie(this.cookie_name, JSON.stringify(this.history_entries));
     }
 
     checkDuplicate(
