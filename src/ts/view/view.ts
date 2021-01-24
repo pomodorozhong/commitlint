@@ -1,6 +1,8 @@
 import { IView } from "../interface/view/view.interface";
 import { IPresenter } from "../interface/presenter/presenter.interface";
 import { Presenter } from "../presenter/presenter";
+import { pen_path } from "../../resources/svg/penPath";
+import { cross_path } from "../../resources/svg/crossPath";
 
 export class View implements IView {
     DOM: Document;
@@ -438,7 +440,7 @@ export class View implements IView {
         svg.setAttribute("viewBox", "0 0 40 40");
         let path = document.createElementNS(xmlns, "path");
         path.setAttribute("class", "close-x");
-        let coords = `M 10,10 L 30,30 M 30,10 L 10,30`;
+        let coords = cross_path;
         path.setAttributeNS(null, "d", coords);
         svg.appendChild(path);
         btn.appendChild(svg);
@@ -456,8 +458,7 @@ export class View implements IView {
         svg.setAttribute("viewBox", "2 1 8 8");
         let path = document.createElementNS(xmlns, "path");
         path.setAttribute("class", "svg_pen");
-        let coords =
-            "M10 10M6 3L3 6L3 7L4 7L7 4L6 3M6.25 2.75L7.25 3.75L7.5 3.5L6.5 2.5L6.25 2.75";
+        let coords = pen_path;
         path.setAttributeNS(null, "d", coords);
         svg.appendChild(path);
         btn.appendChild(svg);
