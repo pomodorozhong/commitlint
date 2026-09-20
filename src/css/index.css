@@ -1,5 +1,8 @@
 body {
     background-color: #555b6e;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 * {
@@ -14,12 +17,15 @@ body {
 
 #top_container {
     display: flex;
+    flex: 1 0 auto;
     flex-wrap: wrap;
     flex-direction: row;
     align-items: flex-start;
     justify-content: center;
 
+    width: 100%;
     margin-left: auto;
+    margin-right: auto;
     padding-top: 15px;
 }
 
@@ -311,26 +317,40 @@ body {
 }
 
 #app_footer {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 4px 10px 16px;
-    text-align: right;
+    flex: 0 0 auto;
+    width: 100%;
+    margin-top: 14px;
+    padding: 0 16px 14px;
+    text-align: center;
+}
+
+#app_footer::before {
+    content: "";
+    display: block;
+    width: 50%;
+    min-width: min(240px, 100%);
+    max-width: 560px;
+    height: 1px;
+    margin: 0 auto 14px;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 #btn_install_info {
     border: 0;
-    padding: 4px;
-    color: #ffffff;
+    padding: 2px 4px;
+    color: rgba(255, 255, 255, 0.85);
     background: transparent;
     font: inherit;
     font-size: 13px;
-    text-decoration: underline;
+    line-height: 1.4;
+    text-decoration: none;
     text-underline-offset: 2px;
     cursor: pointer;
 }
 
 #btn_install_info:hover {
-    color: #f4d9a7;
+    color: #ffffff;
+    text-decoration: underline;
 }
 
 #btn_install_info:focus-visible {
