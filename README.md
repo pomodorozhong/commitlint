@@ -28,9 +28,15 @@ npm run build
 
 ## Install and use offline
 
-The published site can be installed from a supported browser using **Install app** or the browser's
-**Install app / Add to Home screen** menu item. On iPhone or iPad, open the site in Safari, tap
-**Share → Add to Home Screen**, then launch Commitlint from its home-screen icon.
+When Commitlint is not installed, a dismissible install toast appears in the bottom-right corner.
+Select the toast to open the native install prompt where the browser supports it; otherwise, use
+the browser's **Install app / Add to Home screen** menu item. Dismissing the toast hides it for the
+current tab session. On iPhone or iPad, open the site in Safari, tap **Share → Add to Home Screen**,
+then launch Commitlint from its home-screen icon.
+
+To test installation locally, run `npm run build` and then `npm run preview`, and open the local URL
+shown by Vite. The PWA service worker is disabled in the development server, so use the production
+preview for installation and offline checks.
 
 Open the site online once and wait for **Offline support is ready on this device**. The editor, lint
 rules, and saved history are then available offline on that device. The **Information** tab embeds a

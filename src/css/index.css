@@ -283,7 +283,6 @@ body {
     display: none;
 }
 
-#btn_install,
 #btn_update {
     border: 1px solid #ffffff;
     border-radius: 4px;
@@ -298,20 +297,25 @@ body {
     background-color: #ebb86d;
 }
 
-#btn_install:hover,
 #btn_update:hover {
     filter: brightness(0.95);
 }
 
-#btn_install:focus-visible,
 #btn_update:focus-visible {
     outline: 2px solid #ebb86d;
     outline-offset: 2px;
 }
 
-#btn_install[hidden],
 #btn_update[hidden] {
     display: none;
+}
+
+.pwa-install-toast-actionable {
+    cursor: pointer;
+}
+
+.pwa-install-toast-actionable:hover {
+    filter: brightness(1.08);
 }
 
 @media (max-width: 520px) {

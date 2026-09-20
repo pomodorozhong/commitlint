@@ -1,3 +1,5 @@
+import { Notyf, NotyfEvent } from "notyf";
+import "notyf/notyf.min.css";
 import { registerSW } from "virtual:pwa-register";
 
 interface InstallPromptEvent extends Event {
@@ -9,8 +11,24 @@ interface InstallPromptEvent extends Event {
 }
 
 const statusElement = document.getElementById("pwa_status");
-const installButton = document.getElementById("btn_install") as HTMLButtonElement;
 const updateButton = document.getElementById("btn_update") as HTMLButtonElement;
+const installToastDismissedKey = "commitlint-install-toast-dismissed";
+const notyf = new Notyf({
+    duration: 0,
+    dismissible: true,
+    position: { x: "right", y: "bottom" },
+    ripple: false,
+    types: [
+        {
+            type: "pwa",
+            background: "#555b6e",
+            icon: false,
+            duration: 0,
+            dismissible: true,
+            ripple: false,
+        },
+    ],
+});
 
 function setStatus(message: string): void {
     if (statusElement !== null) {
@@ -32,47 +50,147 @@ function installInstructions(): string {
 }
 
 let installPrompt: InstallPromptEvent | undefined;
+let installPromptEventReceived = false;
 const isStandalone =
     window.matchMedia("(display-mode: standalone)").matches ||
     (navigator as Navigator & { standalone?: boolean }).standalone === true;
+let installToast: ReturnType<typeof notyf.open> | undefined;
+let installToastDismissed = wasInstallToastDismissed();
 
-installButton.hidden = isStandalone;
+function wasInstallToastDismissed(): boolean {
+    try {
+        return window.sessionStorage.getItem(installToastDismissedKey) === "true";
+    } catch (error) {
+        return false;
+    }
+}
 
-window.addEventListener("beforeinstallprompt", function (event: Event) {
-    event.preventDefault();
-    installPrompt = event as InstallPromptEvent;
-    installButton.hidden = false;
-});
+function rememberInstallToastDismissal(): void {
+    installToastDismissed = true;
+    try {
+        window.sessionStorage.setItem(installToastDismissedKey, "true");
+    } catch (error) {
+        // The toast remains dismissed for this page even if storage is unavailable.
+    }
+}
 
-window.addEventListener("appinstalled", function () {
-    installPrompt = undefined;
-    installButton.hidden = true;
-    setStatus("Commitlint has been installed.");
-});
+function dismissInstallToast(): void {
+    if (installToast !== undefined) {
+        notyf.dismiss(installToast);
+        installToast = undefined;
+    }
+}
 
-installButton.addEventListener("click", async function () {
+function startInstallFromToast(): void {
     if (installPrompt === undefined) {
-        setStatus(installInstructions());
         return;
     }
 
     const prompt = installPrompt;
     installPrompt = undefined;
+    dismissInstallToast();
+    void requestInstall(prompt);
+}
 
+function showInstallToast(message: string, actionable: boolean): void {
+    if (isStandalone || installToastDismissed) {
+        return;
+    }
+
+    dismissInstallToast();
+
+    const notification = notyf.open({
+        type: "pwa",
+        message,
+        duration: 0,
+        dismissible: true,
+        className: actionable
+            ? "pwa-install-toast pwa-install-toast-actionable"
+            : "pwa-install-toast",
+        ripple: false,
+    });
+    installToast = notification;
+
+    const toastElements = document.querySelectorAll<HTMLElement>(
+        ".notyf__toast.pwa-install-toast:not(.notyf__toast--disappear)"
+    );
+    const toastElement = toastElements[toastElements.length - 1];
+    const dismissButton =
+        toastElement?.querySelector<HTMLButtonElement>(".notyf__dismiss-btn");
+    if (dismissButton !== null && dismissButton !== undefined) {
+        dismissButton.setAttribute("aria-label", "Dismiss install notification");
+    }
+
+    notification.on(NotyfEvent.Dismiss, function () {
+        rememberInstallToastDismissal();
+        if (installToast === notification) {
+            installToast = undefined;
+        }
+    });
+
+    if (actionable) {
+        const messageElement =
+            toastElement?.querySelector<HTMLElement>(".notyf__message");
+        if (messageElement !== null && messageElement !== undefined) {
+            messageElement.setAttribute("role", "button");
+            messageElement.setAttribute("tabindex", "0");
+            messageElement.setAttribute(
+                "aria-label",
+                "Install Commitlint for offline access"
+            );
+            messageElement.addEventListener("keydown", function (event: KeyboardEvent) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    startInstallFromToast();
+                }
+            });
+        }
+        notification.on(NotyfEvent.Click, startInstallFromToast);
+    }
+}
+
+async function requestInstall(prompt: InstallPromptEvent): Promise<void> {
     try {
         await prompt.prompt();
         const choice = await prompt.userChoice;
-        if (choice.outcome === "accepted") {
-            installButton.hidden = true;
-            setStatus("Commitlint is installing.");
-        } else {
-            setStatus("Installation was cancelled.");
-        }
+        setStatus(
+            choice.outcome === "accepted"
+                ? "Commitlint is installing."
+                : "Installation was cancelled."
+        );
     } catch (error) {
         console.error("Unable to show the install prompt.", error);
         setStatus(installInstructions());
     }
+}
+
+window.addEventListener("beforeinstallprompt", function (event: Event) {
+    if (isStandalone || installToastDismissed) {
+        return;
+    }
+
+    installPromptEventReceived = true;
+    event.preventDefault();
+    installPrompt = event as InstallPromptEvent;
+    showInstallToast(
+        "Install Commitlint for offline access. Select this notice to install.",
+        true
+    );
 });
+
+window.addEventListener("appinstalled", function () {
+    installPrompt = undefined;
+    dismissInstallToast();
+    setStatus("Commitlint has been installed.");
+});
+
+if (!isStandalone && !installToastDismissed) {
+    window.setTimeout(function () {
+        if (!installPromptEventReceived) {
+            showInstallToast(installInstructions(), false);
+        }
+    }, 1200);
+}
 
 window.addEventListener("offline", function () {
     setStatus(
