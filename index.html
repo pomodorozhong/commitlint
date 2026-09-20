@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#555b6e" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-title" content="Commitlint" />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="./favicon.svg"
+        />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="./favicon.ico"
+            sizes="48x48"
+        />
+        <link
+            rel="apple-touch-icon"
+            href="./apple-touch-icon-180x180.png"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+            rel="stylesheet"
+        />
+        <title>Commitlint</title>
+      <script type="module" crossorigin src="./assets/index-DQa5NkFH.js"></script>
+      <link rel="stylesheet" crossorigin href="./assets/index-BmUc8PvT.css">
+    <link rel="manifest" href="./manifest.webmanifest"></head>
+
+    <body>
+        <header id="app_header">
+            <div id="pwa_controls">
+                <p id="pwa_status" role="status" aria-live="polite"></p>
+                <button id="btn_update" type="button" hidden>
+                    Reload to update
+                </button>
+            </div>
+        </header>
+        <main id="top_container">
+            <div id="col1">
+                <input type="radio" id="rad_editor" name="tab_1" checked />
+                <label for="rad_editor" id="lbl_for_rad_editor">Editor</label>
+                <div id="frame">
+                    <div id="div_in">
+                        <div id="container1">
+                            <select id="ddl_type"></select>
+                        </div>
+                        <div id="container2">
+                            <input type="text" id="txt_scope" />
+                        </div>
+                        <div id="container3">
+                            <input type="text" id="txt_subject" />
+                        </div>
+                        <div id="container4">
+                            <textarea id="txa_body"></textarea>
+                        </div>
+                        <div id="container5">
+                            <textarea id="txa_footer"></textarea>
+                        </div>
+                        <div id="p_warning">warning</div>
+                    </div>
+                    <div id="div_out">
+                        <div id="div_container_for_formatted">
+                            <div id="p_formatted" class="formatted"></div>
+                            <div>
+                                <button id="btn_copy">Copy to Clipboard</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="col2">
+                <input type="radio" id="rad_history" name="tab_2" checked />
+                <label for="rad_history">History</label>
+                <input type="radio" id="rad_information" name="tab_2" />
+                <label for="rad_information">Information</label>
+                <div id="tab_history"></div>
+                <div id="tab_information">
+                    <iframe
+                        id="embedded_google_sheet"
+                        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0BTVhY3frDJiM2lP-J6ObVVfJyPa8PzYF0Q0YXb_WqFzAeKAaYsdYHZxSl9vlOmvQ0EFZynnGC_-_/pubhtml?widget=false&amp;headers=false"
+                    ></iframe>
+                </div>
+            </div>
+        </main>
+        <footer id="app_footer">
+            <button id="btn_install_info" type="button">
+                Install &amp; offline info
+            </button>
+        </footer>
+    </body>
+</html>
