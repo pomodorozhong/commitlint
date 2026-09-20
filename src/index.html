@@ -3,6 +3,25 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#555b6e" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-title" content="Commitlint" />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="%BASE_URL%favicon.svg"
+        />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="%BASE_URL%favicon.ico"
+            sizes="48x48"
+        />
+        <link
+            rel="apple-touch-icon"
+            href="%BASE_URL%apple-touch-icon-180x180.png"
+        />
         <link
             href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
             rel="stylesheet"
@@ -12,14 +31,20 @@
         <link rel="stylesheet" type="text/css" href="css/btn_clear.css" />
         <link rel="stylesheet" type="text/css" href="css/btn_edit.css" />
         <link rel="stylesheet" type="text/css" href="css/tab.css" />
-        <link
-            rel="icon"
-            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐙</text></svg>"
-        />
         <title>Commitlint</title>
     </head>
 
     <body>
+        <header id="app_header">
+            <h1>Commitlint</h1>
+            <div id="pwa_controls">
+                <p id="pwa_status" role="status" aria-live="polite"></p>
+                <button id="btn_update" type="button" hidden>
+                    Reload to update
+                </button>
+                <button id="btn_install" type="button">Install app</button>
+            </div>
+        </header>
         <div id="top_container">
             <div id="col1">
                 <input type="radio" id="rad_editor" name="tab_1" checked />
