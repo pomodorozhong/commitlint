@@ -29,10 +29,10 @@ npm run build
 ## Install and use offline
 
 When Commitlint is not installed, a dismissible install toast appears in the bottom-right corner.
-Select the toast to open the native install prompt where the browser supports it; otherwise, use
-the browser's **Install app / Add to Home screen** menu item. Dismissing the toast hides it for the
-current tab session. On iPhone or iPad, open the site in Safari, tap **Share → Add to Home Screen**,
-then launch Commitlint from its home-screen icon.
+Where the browser supports installation prompts, select **Install** on the toast to open the native
+prompt. Otherwise, use the browser's **Install app / Add to Home screen** menu item. Dismissing the
+toast hides it for the current tab session. On iPhone or iPad, open the site in Safari, tap
+**Share → Add to Home Screen**, then launch Commitlint from its home-screen icon.
 
 To test installation locally, run `npm run build` and then `npm run preview`, and open the local URL
 shown by Vite. The PWA service worker is disabled in the development server, so use the production

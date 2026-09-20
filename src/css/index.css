@@ -310,12 +310,45 @@ body {
     display: none;
 }
 
-.pwa-install-toast-actionable {
+.pwa-install-toast-actionable .notyf__message {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.pwa-install-toast-copy {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.pwa-install-action {
+    flex: 0 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+    padding: 6px 10px;
+    color: #333333;
+    background-color: #ffffff;
+    font: inherit;
+    font-weight: 600;
+    line-height: 1.2;
     cursor: pointer;
 }
 
-.pwa-install-toast-actionable:hover {
-    filter: brightness(1.08);
+.pwa-install-action:hover {
+    background-color: #f2f2f2;
+}
+
+.pwa-install-action:focus-visible {
+    outline: 2px solid #ebb86d;
+    outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+    .pwa-install-toast-actionable .notyf__wrapper {
+        padding-right: 56px;
+    }
 }
 
 @media (max-width: 520px) {

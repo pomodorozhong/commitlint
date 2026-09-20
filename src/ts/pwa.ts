@@ -132,20 +132,24 @@ function showInstallToast(message: string, actionable: boolean): void {
         const messageElement =
             toastElement?.querySelector<HTMLElement>(".notyf__message");
         if (messageElement !== null && messageElement !== undefined) {
-            messageElement.setAttribute("role", "button");
-            messageElement.setAttribute("tabindex", "0");
-            messageElement.setAttribute(
-                "aria-label",
-                "Install Commitlint for offline access"
-            );
-            messageElement.addEventListener("keydown", function (event: KeyboardEvent) {
-                if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    startInstallFromToast();
-                }
+            const messageCopy = document.createElement("span");
+            messageCopy.className = "pwa-install-toast-copy";
+            messageCopy.textContent = message;
+
+            const installButton = document.createElement("button");
+            installButton.type = "button";
+            installButton.className = "pwa-install-action";
+            installButton.textContent = "Install";
+            installButton.setAttribute("aria-label", "Install Commitlint");
+            installButton.addEventListener("click", function (event: MouseEvent) {
+                event.stopPropagation();
+                startInstallFromToast();
             });
+
+            messageElement.textContent = "";
+            messageElement.appendChild(messageCopy);
+            messageElement.appendChild(installButton);
         }
-        notification.on(NotyfEvent.Click, startInstallFromToast);
     }
 }
 
@@ -173,7 +177,7 @@ window.addEventListener("beforeinstallprompt", function (event: Event) {
     event.preventDefault();
     installPrompt = event as InstallPromptEvent;
     showInstallToast(
-        "Install Commitlint for offline access. Select this notice to install.",
+        "Install Commitlint for offline access.",
         true
     );
 });
