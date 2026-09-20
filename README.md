@@ -29,10 +29,14 @@ npm run build
 ## Install and use offline
 
 When Commitlint is not installed, a dismissible install toast appears in the bottom-right corner.
+The toast links to
+[an introduction to progressive web apps on MDN](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app).
 Where the browser supports installation prompts, select **Install** on the toast to open the native
 prompt. Otherwise, use the browser's **Install app / Add to Home screen** menu item. Dismissing the
-toast hides it for the current tab session. On iPhone or iPad, open the site in Safari, tap
-**Share → Add to Home Screen**, then launch Commitlint from its home-screen icon.
+toast hides automatic reminders permanently (until site data is cleared) in that browser profile;
+use **Install & offline info** in the page footer to show the toast again. On iPhone or iPad, open
+the site in Safari, tap **Share → Add to Home Screen**, then launch Commitlint from its home-screen
+icon.
 
 To test installation locally, run `npm run build` and then `npm run preview`, and open the local URL
 shown by Vite. The PWA service worker is disabled in the development server, so use the production

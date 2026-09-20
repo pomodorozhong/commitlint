@@ -310,7 +310,39 @@ body {
     display: none;
 }
 
-.pwa-install-toast-actionable .notyf__message {
+#app_footer {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 4px 10px 16px;
+    text-align: right;
+}
+
+#btn_install_info {
+    border: 0;
+    padding: 4px;
+    color: #ffffff;
+    background: transparent;
+    font: inherit;
+    font-size: 13px;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+}
+
+#btn_install_info:hover {
+    color: #f4d9a7;
+}
+
+#btn_install_info:focus-visible {
+    outline: 2px solid #ebb86d;
+    outline-offset: 2px;
+}
+
+#btn_install_info[hidden] {
+    display: none;
+}
+
+.pwa-install-toast .notyf__message {
     display: flex;
     flex: 1 1 auto;
     align-items: center;
@@ -318,9 +350,30 @@ body {
     min-width: 0;
 }
 
-.pwa-install-toast-copy {
+.pwa-install-toast-content {
+    display: flex;
     flex: 1 1 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
     min-width: 0;
+}
+
+.pwa-install-toast-copy {
+    display: block;
+}
+
+.pwa-install-toast-more {
+    color: #ffffff;
+    font-size: 13px;
+    line-height: 1.2;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.pwa-install-toast-more:focus-visible {
+    outline: 2px solid #ebb86d;
+    outline-offset: 2px;
 }
 
 .pwa-install-action {
@@ -346,7 +399,7 @@ body {
 }
 
 @media (max-width: 480px) {
-    .pwa-install-toast-actionable .notyf__wrapper {
+    .pwa-install-toast .notyf__wrapper {
         padding-right: 56px;
     }
 }

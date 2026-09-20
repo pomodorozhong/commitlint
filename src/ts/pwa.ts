@@ -12,7 +12,12 @@ interface InstallPromptEvent extends Event {
 
 const statusElement = document.getElementById("pwa_status");
 const updateButton = document.getElementById("btn_update") as HTMLButtonElement;
+const installInfoButton = document.getElementById(
+    "btn_install_info"
+) as HTMLButtonElement;
 const installToastDismissedKey = "commitlint-install-toast-dismissed";
+const pwaInfoUrl =
+    "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app";
 const notyf = new Notyf({
     duration: 0,
     dismissible: true,
@@ -59,7 +64,7 @@ let installToastDismissed = wasInstallToastDismissed();
 
 function wasInstallToastDismissed(): boolean {
     try {
-        return window.sessionStorage.getItem(installToastDismissedKey) === "true";
+        return window.localStorage.getItem(installToastDismissedKey) === "true";
     } catch (error) {
         return false;
     }
@@ -68,9 +73,9 @@ function wasInstallToastDismissed(): boolean {
 function rememberInstallToastDismissal(): void {
     installToastDismissed = true;
     try {
-        window.sessionStorage.setItem(installToastDismissedKey, "true");
+        window.localStorage.setItem(installToastDismissedKey, "true");
     } catch (error) {
-        // The toast remains dismissed for this page even if storage is unavailable.
+        // The toast remains dismissed for this page if storage is unavailable.
     }
 }
 
@@ -92,8 +97,12 @@ function startInstallFromToast(): void {
     void requestInstall(prompt);
 }
 
-function showInstallToast(message: string, actionable: boolean): void {
-    if (isStandalone || installToastDismissed) {
+function showInstallToast(
+    message: string,
+    actionable: boolean,
+    force = false
+): void {
+    if (isStandalone || (installToastDismissed && !force)) {
         return;
     }
 
@@ -119,23 +128,38 @@ function showInstallToast(message: string, actionable: boolean): void {
         toastElement?.querySelector<HTMLButtonElement>(".notyf__dismiss-btn");
     if (dismissButton !== null && dismissButton !== undefined) {
         dismissButton.setAttribute("aria-label", "Dismiss install notification");
+        dismissButton.addEventListener("click", rememberInstallToastDismissal);
     }
 
     notification.on(NotyfEvent.Dismiss, function () {
-        rememberInstallToastDismissal();
         if (installToast === notification) {
             installToast = undefined;
         }
     });
 
-    if (actionable) {
-        const messageElement =
-            toastElement?.querySelector<HTMLElement>(".notyf__message");
-        if (messageElement !== null && messageElement !== undefined) {
-            const messageCopy = document.createElement("span");
-            messageCopy.className = "pwa-install-toast-copy";
-            messageCopy.textContent = message;
+    const messageElement =
+        toastElement?.querySelector<HTMLElement>(".notyf__message");
+    if (messageElement !== null && messageElement !== undefined) {
+        const contentElement = document.createElement("div");
+        contentElement.className = "pwa-install-toast-content";
 
+        const messageCopy = document.createElement("span");
+        messageCopy.className = "pwa-install-toast-copy";
+        messageCopy.textContent = message;
+        contentElement.appendChild(messageCopy);
+
+        const infoLink = document.createElement("a");
+        infoLink.className = "pwa-install-toast-more";
+        infoLink.href = pwaInfoUrl;
+        infoLink.target = "_blank";
+        infoLink.rel = "noopener noreferrer";
+        infoLink.textContent = "What is a PWA?";
+        contentElement.appendChild(infoLink);
+
+        messageElement.textContent = "";
+        messageElement.appendChild(contentElement);
+
+        if (actionable) {
             const installButton = document.createElement("button");
             installButton.type = "button";
             installButton.className = "pwa-install-action";
@@ -145,13 +169,22 @@ function showInstallToast(message: string, actionable: boolean): void {
                 event.stopPropagation();
                 startInstallFromToast();
             });
-
-            messageElement.textContent = "";
-            messageElement.appendChild(messageCopy);
             messageElement.appendChild(installButton);
         }
     }
 }
+
+installInfoButton.hidden = isStandalone;
+installInfoButton.addEventListener("click", function () {
+    const actionable = installPrompt !== undefined;
+    showInstallToast(
+        actionable
+            ? "Install Commitlint for offline access."
+            : installInstructions(),
+        actionable,
+        true
+    );
+});
 
 async function requestInstall(prompt: InstallPromptEvent): Promise<void> {
     try {
@@ -169,22 +202,20 @@ async function requestInstall(prompt: InstallPromptEvent): Promise<void> {
 }
 
 window.addEventListener("beforeinstallprompt", function (event: Event) {
-    if (isStandalone || installToastDismissed) {
+    if (isStandalone) {
         return;
     }
 
     installPromptEventReceived = true;
     event.preventDefault();
     installPrompt = event as InstallPromptEvent;
-    showInstallToast(
-        "Install Commitlint for offline access.",
-        true
-    );
+    showInstallToast("Install Commitlint for offline access.", true);
 });
 
 window.addEventListener("appinstalled", function () {
     installPrompt = undefined;
     dismissInstallToast();
+    installInfoButton.hidden = true;
     setStatus("Commitlint has been installed.");
 });
 
